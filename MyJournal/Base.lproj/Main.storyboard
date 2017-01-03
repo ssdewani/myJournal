@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Title-->
+        <!--Journal Entries-->
         <scene sceneID="CoA-0e-tn7">
             <objects>
                 <tableViewController id="Ove-LY-D36" customClass="EntryTableViewController" customModule="MyJournal" customModuleProvider="target" sceneMemberID="viewController">
@@ -22,7 +22,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="72"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4hf-Sp-Z4e" id="1Mp-7y-D9K">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="71"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="72"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t4z-Ut-D5X">
@@ -53,7 +53,7 @@
                             <outlet property="delegate" destination="Ove-LY-D36" id="zWH-Ev-tDt"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Title" id="fnc-JX-Ey9">
+                    <navigationItem key="navigationItem" title="Journal Entries" id="fnc-JX-Ey9">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Ila-zE-11G">
                             <connections>
                                 <segue destination="Rmi-kQ-ljB" kind="presentation" identifier="AddItem" id="irp-RH-bZv"/>
@@ -74,100 +74,135 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="1120"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l69-CX-lkh">
-                                <rect key="frame" x="0.0" y="64" width="375" height="1012"/>
+                                <rect key="frame" x="8" y="64" width="359" height="559"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uaw-Us-xt7">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1060"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="WDa-Ao-KnN">
+                                        <rect key="frame" x="0.0" y="0.0" width="359" height="471"/>
                                         <subviews>
-                                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="C6t-9R-qMv">
-                                                <rect key="frame" x="8" y="8" width="359" height="47"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="C6t-9R-qMv">
+                                                <rect key="frame" x="0.0" y="0.0" width="359" height="60"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="60" id="m9x-19-stL"/>
+                                                </constraints>
                                                 <date key="date" timeIntervalSinceReferenceDate="504344270.226762">
                                                     <!--2016-12-25 07:37:50 +0000-->
                                                 </date>
                                             </datePicker>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="What am I feeling" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="79T-89-LMY">
-                                                <rect key="frame" x="8" y="63" width="359" height="21"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I am grateful for" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="79T-89-LMY">
+                                                <rect key="frame" x="0.0" y="68" width="359" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="What will I accomplish today" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q8U-ZA-HWe">
-                                                <rect key="frame" x="8" y="313" width="359" height="21"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="What I did today" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oqA-Qg-kB6">
-                                                <rect key="frame" x="8" y="563" width="359" height="21"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="My Tomorrow plan" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pJp-GG-gSZ">
-                                                <rect key="frame" x="8" y="813" width="359" height="21"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="&lt;Enter Text&gt;" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="cBg-hx-ZTn">
-                                                <rect key="frame" x="8" y="342" width="359" height="213"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="&lt;Enter Text&gt;" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Ga9-aP-kkL">
+                                                <rect key="frame" x="0.0" y="96.5" width="359" height="32"/>
+                                                <color key="backgroundColor" red="0.84321825916230364" green="0.84321825916230364" blue="0.84321825916230364" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="32" id="g75-dC-cE7"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="&lt;Enter Text&gt;" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Lpi-Zm-Sln">
-                                                <rect key="frame" x="8" y="592" width="359" height="213"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What would make today great" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q8U-ZA-HWe">
+                                                <rect key="frame" x="0.0" y="136.5" width="359" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="&lt;Enter Text&gt;" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="cBg-hx-ZTn">
+                                                <rect key="frame" x="0.0" y="165" width="359" height="32"/>
+                                                <color key="backgroundColor" red="0.84321825916230364" green="0.84321825916230364" blue="0.84321825916230364" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="32" id="JfL-ey-3yP"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="&lt;Enter Text&gt;" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Ao8-YD-IbG">
-                                                <rect key="frame" x="8" y="842" width="359" height="213"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zmj-3m-kfD">
+                                                <rect key="frame" x="0.0" y="205" width="359" height="20.5"/>
+                                                <string key="text">Daily affirmations. I am...
+
+</string>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="&lt;Enter Text&gt;" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="KJz-8X-STM">
+                                                <rect key="frame" x="0.0" y="233.5" width="359" height="32"/>
+                                                <color key="backgroundColor" red="0.84321825920000004" green="0.84321825920000004" blue="0.84321825920000004" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="32" id="itN-HG-NaQ"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="&lt;Enter Text&gt;" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Ga9-aP-kkL">
-                                                <rect key="frame" x="8" y="92" width="359" height="213"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amazing things that happened today" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oqA-Qg-kB6">
+                                                <rect key="frame" x="0.0" y="273.5" width="359" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="&lt;Enter Text&gt;" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Lpi-Zm-Sln">
+                                                <rect key="frame" x="0.0" y="302" width="359" height="32"/>
+                                                <color key="backgroundColor" red="0.84321825916230364" green="0.84321825916230364" blue="0.84321825916230364" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="32" id="lOO-Ap-jYh"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How could I have made today even better" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H2u-H7-97T">
+                                                <rect key="frame" x="0.0" y="342" width="359" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="&lt;Enter Text&gt;" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="SbC-cn-Zgc">
+                                                <rect key="frame" x="0.0" y="370.5" width="359" height="32"/>
+                                                <color key="backgroundColor" red="0.84321825920000004" green="0.84321825920000004" blue="0.84321825920000004" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="32" id="ExG-Ke-bJ7"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Tomorrow List" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pJp-GG-gSZ">
+                                                <rect key="frame" x="0.0" y="410.5" width="359" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="&lt;Enter Text&gt;" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Ao8-YD-IbG">
+                                                <rect key="frame" x="0.0" y="439" width="359" height="32"/>
+                                                <color key="backgroundColor" red="0.84321825916230364" green="0.84321825916230364" blue="0.84321825916230364" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="32" id="pGc-Dx-5Ec"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="1060" id="gcC-lR-D5M"/>
-                                        </constraints>
-                                    </view>
+                                    </stackView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="Uaw-Us-xt7" secondAttribute="bottom" id="N39-RS-Vty"/>
-                                    <constraint firstAttribute="trailing" secondItem="Uaw-Us-xt7" secondAttribute="trailing" id="WFN-nG-cIg"/>
-                                    <constraint firstItem="Uaw-Us-xt7" firstAttribute="leading" secondItem="l69-CX-lkh" secondAttribute="leading" id="X3M-R7-CPE"/>
-                                    <constraint firstItem="Uaw-Us-xt7" firstAttribute="top" secondItem="l69-CX-lkh" secondAttribute="top" id="zN8-A1-FUp"/>
+                                    <constraint firstAttribute="bottom" secondItem="WDa-Ao-KnN" secondAttribute="bottom" id="9bd-95-XC8"/>
+                                    <constraint firstAttribute="trailing" secondItem="WDa-Ao-KnN" secondAttribute="trailing" id="F1m-qz-cap"/>
+                                    <constraint firstItem="WDa-Ao-KnN" firstAttribute="top" secondItem="l69-CX-lkh" secondAttribute="top" id="WQ2-Em-SMn"/>
+                                    <constraint firstItem="WDa-Ao-KnN" firstAttribute="width" secondItem="l69-CX-lkh" secondAttribute="width" id="XN1-UA-ZPi"/>
+                                    <constraint firstItem="WDa-Ao-KnN" firstAttribute="leading" secondItem="l69-CX-lkh" secondAttribute="leading" id="hxy-8d-P0n"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="l69-CX-lkh" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="FJp-gO-x4m"/>
+                            <constraint firstItem="l69-CX-lkh" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="8" id="FJp-gO-x4m"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="l69-CX-lkh" secondAttribute="bottom" id="GQC-Vn-CjX"/>
                             <constraint firstItem="l69-CX-lkh" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="R5g-hI-fPp"/>
-                            <constraint firstAttribute="trailing" secondItem="l69-CX-lkh" secondAttribute="trailing" id="jkV-gR-mHi"/>
-                            <constraint firstItem="Uaw-Us-xt7" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="vZ2-Be-f9z"/>
+                            <constraint firstAttribute="trailing" secondItem="l69-CX-lkh" secondAttribute="trailing" constant="8" id="jkV-gR-mHi"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
@@ -184,21 +219,27 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="375" height="1120"/>
                     <connections>
                         <outlet property="achievedTodayLabel" destination="Lpi-Zm-Sln" id="yAc-uf-dKF"/>
+                        <outlet property="achievedTodayTextViewHeight" destination="lOO-Ap-jYh" id="mcv-x8-kx7"/>
+                        <outlet property="affirmTodayLabel" destination="KJz-8X-STM" id="Ndp-m2-5TF"/>
+                        <outlet property="affirmTodayTextViewHeight" destination="itN-HG-NaQ" id="tpE-ln-OWC"/>
                         <outlet property="datePicker" destination="C6t-9R-qMv" id="uPS-2f-NnS"/>
                         <outlet property="feelingTodayLabel" destination="Ga9-aP-kkL" id="YaQ-Bh-AoY"/>
+                        <outlet property="feelingTodayTextViewHeight" destination="g75-dC-cE7" id="7hB-WO-vrs"/>
                         <outlet property="planTodayLabel" destination="cBg-hx-ZTn" id="mZz-8Y-7X2"/>
+                        <outlet property="planTodayTextViewHeight" destination="JfL-ey-3yP" id="MLS-hr-Hht"/>
                         <outlet property="planTomorrowLabel" destination="Ao8-YD-IbG" id="2kb-Ve-5Vh"/>
+                        <outlet property="planTomorrowTextViewHeight" destination="pGc-Dx-5Ec" id="9CI-cI-n6M"/>
+                        <outlet property="reflectTodayLabel" destination="SbC-cn-Zgc" id="m0G-dp-x0P"/>
+                        <outlet property="reflectTodayTextViewHeight" destination="ExG-Ke-bJ7" id="ENk-L5-V62"/>
                         <outlet property="saveButton" destination="kKv-ed-QdB" id="UXa-Je-uWg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <exit id="8gZ-U3-eoD" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2015.2" y="129.53523238380811"/>
+            <point key="canvasLocation" x="2015.2" y="129.08545727136433"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="VQc-52-9a5">

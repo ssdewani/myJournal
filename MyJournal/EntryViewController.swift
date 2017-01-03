@@ -8,17 +8,30 @@
 
 import UIKit
 
-class EntryViewController: UIViewController, UINavigationControllerDelegate {
+class EntryViewController: UIViewController, UINavigationControllerDelegate, UITextViewDelegate {
     
     //MARK: Properties
     @IBOutlet weak var feelingTodayLabel: UITextView!
     @IBOutlet weak var planTodayLabel: UITextView!
+    @IBOutlet weak var affirmTodayLabel: UITextView!
     @IBOutlet weak var achievedTodayLabel: UITextView!
+    @IBOutlet weak var reflectTodayLabel: UITextView!
     @IBOutlet weak var planTomorrowLabel: UITextView!
     @IBOutlet weak var saveButton: UIBarButtonItem!
     @IBOutlet weak var datePicker: UIDatePicker!
     
+  //  @IBOutlet weak var feelingTodayTextViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var feelingTodayTextViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var affirmTodayTextViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var planTodayTextViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var reflectTodayTextViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var planTomorrowTextViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var achievedTodayTextViewHeight: NSLayoutConstraint!
+
     var entry: Entry?
+    
+    let minTextViewHeight: CGFloat = 32
+    let maxTextViewHeight: CGFloat = 192
     
     
  //MARK: Navigation
@@ -27,11 +40,13 @@ class EntryViewController: UIViewController, UINavigationControllerDelegate {
         if let button = sender as? UIBarButtonItem, button === saveButton {
             let feelingToday = feelingTodayLabel.text ?? ""
             let planToday = planTodayLabel.text ?? ""
+            let affirmToday = affirmTodayLabel.text ?? ""
             let achievedToday = achievedTodayLabel.text ?? ""
+            let reflectToday = reflectTodayLabel.text ?? ""
             let planTomorrow = planTomorrowLabel.text ?? ""
             let date = datePicker.date
         
-            entry = Entry(feelingToday: feelingToday, planToday: planToday, achievedToday: achievedToday, planTomorrow: planTomorrow, date: date)
+            entry = Entry(feelingToday: feelingToday, planToday: planToday, affirmToday: affirmToday, achievedToday: achievedToday, reflectToday: reflectToday, planTomorrow: planTomorrow, date: date)
         }
         
         
@@ -55,23 +70,78 @@ class EntryViewController: UIViewController, UINavigationControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        feelingTodayLabel.delegate = self
+        planTodayLabel.delegate = self
+        affirmTodayLabel.delegate = self
+        achievedTodayLabel.delegate = self
+        reflectTodayLabel.delegate = self
+        planTomorrowLabel.delegate = self
+        
         if let entry = entry {
             feelingTodayLabel.text = entry.feelingToday
             planTodayLabel.text = entry.planToday
+            affirmTodayLabel.text = entry.affirmToday
             achievedTodayLabel.text = entry.achievedToday
+            reflectTodayLabel.text = entry.reflectToday
             planTomorrowLabel.text = entry.planTomorrow
             datePicker.date = entry.date
         } else {
             datePicker.date = Date()
         }
         
+        refreshTextViewHeight(textView: feelingTodayLabel, textViewHeightContraint: feelingTodayTextViewHeight)
+        refreshTextViewHeight(textView: planTodayLabel, textViewHeightContraint: planTodayTextViewHeight)
+        refreshTextViewHeight(textView: affirmTodayLabel, textViewHeightContraint: affirmTodayTextViewHeight)
+        refreshTextViewHeight(textView: achievedTodayLabel, textViewHeightContraint: achievedTodayTextViewHeight)
+        refreshTextViewHeight(textView: planTomorrowLabel, textViewHeightContraint: planTomorrowTextViewHeight)
+        refreshTextViewHeight(textView: reflectTodayLabel, textViewHeightContraint: reflectTodayTextViewHeight)
+        
+    
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    //MARK: UITextView Delegate
+   
+    func textViewDidChange(_ textView: UITextView) {
+        switch textView {
+        case feelingTodayLabel:
+            refreshTextViewHeight(textView: feelingTodayLabel, textViewHeightContraint: feelingTodayTextViewHeight)
+        case planTodayLabel:
+            refreshTextViewHeight(textView: planTodayLabel, textViewHeightContraint: planTodayTextViewHeight)
+        case affirmTodayLabel:
+            refreshTextViewHeight(textView: affirmTodayLabel, textViewHeightContraint: affirmTodayTextViewHeight)
+        case achievedTodayLabel:
+            refreshTextViewHeight(textView: achievedTodayLabel, textViewHeightContraint: achievedTodayTextViewHeight)
+        case reflectTodayLabel:
+            refreshTextViewHeight(textView: reflectTodayLabel, textViewHeightContraint: reflectTodayTextViewHeight)
+        case planTomorrowLabel:
+            refreshTextViewHeight(textView: planTomorrowLabel, textViewHeightContraint: planTomorrowTextViewHeight)
+        default:
+            print ("damn")
+        }
+     
+    }
 
-
+    
+    func refreshTextViewHeight(textView: UITextView, textViewHeightContraint:NSLayoutConstraint) {
+        var height = ceil(textView.contentSize.height)
+        if (height < minTextViewHeight + 5) { // min cap, + 5 to avoid tiny height difference at min height
+            height = minTextViewHeight
+        }
+        if (height > maxTextViewHeight) { // max cap
+            height = maxTextViewHeight
+        }
+        
+        if height != textViewHeightContraint.constant - 10 { // set when height changed
+            textViewHeightContraint.constant = height + 10 // change the value of NSLayoutConstraint
+            textView.setContentOffset(CGPoint.zero, animated: false) // scroll to top to avoid "wrong contentOffset" artefact when line count changes
+        }
+    }
+    
+    
 }
 

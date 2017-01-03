@@ -128,7 +128,7 @@ class EntryTableViewController: UITableViewController {
     }
 
 
-    
+/*
     private func loadSampleData() {
         
         let formatter = DateFormatter()
@@ -140,6 +140,8 @@ class EntryTableViewController: UITableViewController {
         entries += [a,b,c]
         
     }
+  */
+    
     
     private func saveEntries() {
         let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(entries, toFile: Entry.ArchiveURL.path)
