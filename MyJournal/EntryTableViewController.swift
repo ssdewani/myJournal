@@ -23,6 +23,7 @@ class EntryTableViewController: UITableViewController {
         //loadSampleData()
         if let savedEntries = loadEntries() {
             entries += savedEntries
+            entries.sort(by: { $0.date.compare($1.date) == .orderedDescending })
         }
 
         // Uncomment the following line to preserve selection between presentations
@@ -116,10 +117,12 @@ class EntryTableViewController: UITableViewController {
         if let sourceViewController = sender.source as? EntryViewController, let entry = sourceViewController.entry {
             if let selectedIndexPath = tableView.indexPathForSelectedRow {
                 entries[selectedIndexPath.row] = entry
+                entries.sort(by: { $0.date.compare($1.date) == .orderedDescending })
                 tableView.reloadRows(at: [selectedIndexPath], with: .none)
             } else {
                 let newIndexPath = IndexPath(row: entries.count, section: 0)
                 entries.append(entry)
+                entries.sort(by: { $0.date.compare($1.date) == .orderedDescending })
                 tableView.insertRows(at: [newIndexPath], with: .automatic)
                 
             }
