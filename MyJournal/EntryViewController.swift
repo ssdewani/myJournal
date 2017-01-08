@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EntryViewController: UIViewController, UINavigationControllerDelegate, UITextViewDelegate {
+class EntryViewController: UIViewController, UINavigationControllerDelegate, UITextViewDelegate, UIImagePickerControllerDelegate {
     
     //MARK: Properties
     @IBOutlet weak var feelingTodayLabel: UITextView!
@@ -19,6 +19,7 @@ class EntryViewController: UIViewController, UINavigationControllerDelegate, UIT
     @IBOutlet weak var planTomorrowLabel: UITextView!
     @IBOutlet weak var saveButton: UIBarButtonItem!
     @IBOutlet weak var datePicker: UIDatePicker!
+    @IBOutlet weak var photoImageView: UIImageView!
     
   //  @IBOutlet weak var feelingTodayTextViewHeight: NSLayoutConstraint!
     @IBOutlet weak var feelingTodayTextViewHeight: NSLayoutConstraint!
@@ -45,8 +46,9 @@ class EntryViewController: UIViewController, UINavigationControllerDelegate, UIT
             let reflectToday = reflectTodayLabel.text ?? ""
             let planTomorrow = planTomorrowLabel.text ?? ""
             let date = datePicker.date
+            let image = photoImageView.image
         
-            entry = Entry(feelingToday: feelingToday, planToday: planToday, affirmToday: affirmToday, achievedToday: achievedToday, reflectToday: reflectToday, planTomorrow: planTomorrow, date: date)
+            entry = Entry(feelingToday: feelingToday, planToday: planToday, affirmToday: affirmToday, achievedToday: achievedToday, reflectToday: reflectToday, planTomorrow: planTomorrow, date: date, image: image)
         }
         
         
@@ -67,6 +69,17 @@ class EntryViewController: UIViewController, UINavigationControllerDelegate, UIT
         }
     }
 
+    @IBAction func touchedImage(_ sender: UITapGestureRecognizer) {
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.sourceType = .photoLibrary
+        imagePickerController.delegate = self
+        present(imagePickerController, animated: true, completion: nil)
+
+    }
+    
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -85,6 +98,7 @@ class EntryViewController: UIViewController, UINavigationControllerDelegate, UIT
             reflectTodayLabel.text = entry.reflectToday
             planTomorrowLabel.text = entry.planTomorrow
             datePicker.date = entry.date
+            photoImageView.image = entry.image
         } else {
             datePicker.date = Date()
         }
@@ -126,8 +140,24 @@ class EntryViewController: UIViewController, UINavigationControllerDelegate, UIT
      
     }
 
+    //MARK: UIImagePicketControllerDelegate
+
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
     
-    func refreshTextViewHeight(textView: UITextView, textViewHeightContraint:NSLayoutConstraint) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        guard let selectedImage = info[UIImagePickerControllerOriginalImage] as? UIImage
+            else {
+                fatalError("Expected a dictionary containing an image, but was provided the following: \(info)")
+        }
+        photoImageView.image = selectedImage
+        dismiss(animated: true, completion: nil)
+    }
+    
+    //MARK: Private methods
+    
+    private func refreshTextViewHeight(textView: UITextView, textViewHeightContraint:NSLayoutConstraint) {
         var height = ceil(textView.contentSize.height)
         if (height < minTextViewHeight + 5) { // min cap, + 5 to avoid tiny height difference at min height
             height = minTextViewHeight

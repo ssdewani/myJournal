@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -22,27 +23,32 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="72"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4hf-Sp-Z4e" id="1Mp-7y-D9K">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="72"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="71"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t4z-Ut-D5X">
-                                            <rect key="frame" x="23" y="11" width="344" height="21"/>
+                                            <rect key="frame" x="79" y="11" width="288" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Snippet" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Bo-Lm-c9R">
-                                            <rect key="frame" x="23" y="40" width="344" height="21"/>
+                                            <rect key="frame" x="79" y="40" width="288" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qEO-DR-Lia">
+                                            <rect key="frame" x="0.0" y="0.0" width="71" height="71"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="dateLabel" destination="t4z-Ut-D5X" id="1OH-tU-qPs"/>
+                                    <outlet property="photoImageView" destination="qEO-DR-Lia" id="cQT-Vv-SAn"/>
                                     <outlet property="snippetLabel" destination="5Bo-Lm-c9R" id="zbM-2x-xpT"/>
                                     <segue destination="BYZ-38-t0r" kind="show" identifier="ShowDetail" id="zej-cY-Z4K"/>
                                 </connections>
@@ -81,7 +87,7 @@
                                 <rect key="frame" x="8" y="64" width="359" height="559"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="WDa-Ao-KnN">
-                                        <rect key="frame" x="0.0" y="0.0" width="359" height="471"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="359" height="866.5"/>
                                         <subviews>
                                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="C6t-9R-qMv">
                                                 <rect key="frame" x="0.0" y="0.0" width="359" height="60"/>
@@ -185,6 +191,22 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Photo of the day" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lyw-z4-FzH">
+                                                <rect key="frame" x="0.0" y="479" width="359" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="6T8-gS-wnI">
+                                                <rect key="frame" x="0.0" y="507.5" width="359" height="359"/>
+                                                <gestureRecognizers/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="6T8-gS-wnI" secondAttribute="height" multiplier="1:1" id="eQz-2k-Nqu"/>
+                                                </constraints>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="2Lx-kS-f7b" appends="YES" id="ewv-pm-U7O"/>
+                                                </connections>
+                                            </imageView>
                                         </subviews>
                                     </stackView>
                                 </subviews>
@@ -227,6 +249,7 @@
                         <outlet property="datePicker" destination="C6t-9R-qMv" id="uPS-2f-NnS"/>
                         <outlet property="feelingTodayLabel" destination="Ga9-aP-kkL" id="YaQ-Bh-AoY"/>
                         <outlet property="feelingTodayTextViewHeight" destination="g75-dC-cE7" id="7hB-WO-vrs"/>
+                        <outlet property="photoImageView" destination="6T8-gS-wnI" id="Z4J-Jq-v6o"/>
                         <outlet property="planTodayLabel" destination="cBg-hx-ZTn" id="mZz-8Y-7X2"/>
                         <outlet property="planTodayTextViewHeight" destination="JfL-ey-3yP" id="MLS-hr-Hht"/>
                         <outlet property="planTomorrowLabel" destination="Ao8-YD-IbG" id="2kb-Ve-5Vh"/>
@@ -238,6 +261,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <exit id="8gZ-U3-eoD" userLabel="Exit" sceneMemberID="exit"/>
+                <tapGestureRecognizer id="2Lx-kS-f7b">
+                    <connections>
+                        <action selector="touchedImage:" destination="BYZ-38-t0r" id="bYa-rp-o1M"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2015.2" y="129.08545727136433"/>
         </scene>
@@ -278,6 +306,9 @@
             <point key="canvasLocation" x="1234" y="488"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="defaultPhoto" width="540" height="540"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="zej-cY-Z4K"/>
     </inferredMetricsTieBreakers>

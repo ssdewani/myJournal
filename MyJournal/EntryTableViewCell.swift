@@ -14,6 +14,7 @@ class EntryTableViewCell: UITableViewCell {
     
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var snippetLabel: UILabel!
+    @IBOutlet weak var photoImageView: UIImageView!
     
 
     override func awakeFromNib() {

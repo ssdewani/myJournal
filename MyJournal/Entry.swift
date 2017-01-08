@@ -17,6 +17,7 @@ class Entry: NSObject, NSCoding {
     var reflectToday: String
     var planTomorrow: String
     var date: Date
+    var image: UIImage?
     
     struct PropertyKey {
         static let feelingToday = "feelingToday"
@@ -26,6 +27,7 @@ class Entry: NSObject, NSCoding {
         static let reflectToday = "reflectToday"
         static let planTomorrow = "planTomorrow"
         static let date = "date"
+        static let image = "image"
     }
     
     static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
@@ -33,7 +35,7 @@ class Entry: NSObject, NSCoding {
     
     //MARK:Init
     
-    init(feelingToday: String, planToday: String, affirmToday: String, achievedToday: String, reflectToday: String, planTomorrow: String, date: Date) {
+    init(feelingToday: String, planToday: String, affirmToday: String, achievedToday: String, reflectToday: String, planTomorrow: String, date: Date, image: UIImage?) {
         self.feelingToday = feelingToday
         self.planToday = planToday
         self.affirmToday = affirmToday
@@ -41,7 +43,7 @@ class Entry: NSObject, NSCoding {
         self.reflectToday = reflectToday
         self.planTomorrow = planTomorrow
         self.date = date
-        
+        self.image = image
     }
     
     //Mark: NSCoding
@@ -53,6 +55,7 @@ class Entry: NSObject, NSCoding {
         aCoder.encode(reflectToday, forKey: PropertyKey.reflectToday)
         aCoder.encode(planTomorrow, forKey: PropertyKey.planTomorrow)
         aCoder.encode(date, forKey: PropertyKey.date)
+        aCoder.encode(image, forKey: PropertyKey.image)
     }
     
     required convenience init?(coder aDecoder: NSCoder) {
@@ -63,7 +66,8 @@ class Entry: NSObject, NSCoding {
         let reflectToday = aDecoder.decodeObject(forKey: PropertyKey.reflectToday) as? String
         let planTomorrow = aDecoder.decodeObject(forKey: PropertyKey.planTomorrow) as? String
         let date = aDecoder.decodeObject(forKey: PropertyKey.date) as? Date
-        self.init(feelingToday: feelingToday!, planToday: planToday!, affirmToday: affirmToday!, achievedToday: achievedToday!, reflectToday: reflectToday!, planTomorrow: planTomorrow!, date: date!)
+        let image = aDecoder.decodeObject(forKey: PropertyKey.image) as? UIImage
+        self.init(feelingToday: feelingToday!, planToday: planToday!, affirmToday: affirmToday!, achievedToday: achievedToday!, reflectToday: reflectToday!, planTomorrow: planTomorrow!, date: date!, image: image)
     }
     
 }

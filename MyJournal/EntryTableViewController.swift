@@ -56,10 +56,13 @@ class EntryTableViewController: UITableViewController {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
         cell.dateLabel.text =  formatter.string(from: entries[indexPath.row].date)
+    
         let snippet = entries[indexPath.row].feelingToday as String
         let index = snippet.index(snippet.startIndex, offsetBy: min(snippet.characters.count,25))
-        
         cell.snippetLabel.text = snippet.substring(to: index)
+        
+        cell.photoImageView.image = entries[indexPath.row].image
+    
         return cell
     }
     
@@ -118,13 +121,11 @@ class EntryTableViewController: UITableViewController {
             if let selectedIndexPath = tableView.indexPathForSelectedRow {
                 entries[selectedIndexPath.row] = entry
                 entries.sort(by: { $0.date.compare($1.date) == .orderedDescending })
-                tableView.reloadRows(at: [selectedIndexPath], with: .none)
+                tableView.reloadData()
             } else {
-                let newIndexPath = IndexPath(row: entries.count, section: 0)
                 entries.append(entry)
                 entries.sort(by: { $0.date.compare($1.date) == .orderedDescending })
-                tableView.insertRows(at: [newIndexPath], with: .automatic)
-                
+                tableView.reloadData()                
             }
         }
         saveEntries()
