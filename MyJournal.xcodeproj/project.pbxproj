@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2CC3AC6D49082D2FB9713E52 /* Pods_MyJournal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CAADC80C3EEBC73FB44661F /* Pods_MyJournal.framework */; };
 		CC174F0B1E0F67560036F4E6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC174F0A1E0F67560036F4E6 /* AppDelegate.swift */; };
 		CC174F0D1E0F67560036F4E6 /* EntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC174F0C1E0F67560036F4E6 /* EntryViewController.swift */; };
 		CC174F101E0F67560036F4E6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC174F0E1E0F67560036F4E6 /* Main.storyboard */; };
@@ -16,6 +17,8 @@
 		CC174F2B1E0F91E20036F4E6 /* EntryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC174F2A1E0F91E20036F4E6 /* EntryTableViewController.swift */; };
 		CC174F2D1E0F92050036F4E6 /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC174F2C1E0F92040036F4E6 /* Entry.swift */; };
 		CC174F2F1E0F94B50036F4E6 /* EntryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC174F2E1E0F94B50036F4E6 /* EntryTableViewCell.swift */; };
+		CCB8CD011E21D56100859514 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CCB8CD001E21D56100859514 /* GoogleService-Info.plist */; };
+		CCB8CD021E21D56100859514 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CCB8CD001E21D56100859514 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +32,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		00F9C094C0CA6C2AFCB4C1EC /* Pods-MyJournal.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyJournal.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyJournal/Pods-MyJournal.debug.xcconfig"; sourceTree = "<group>"; };
+		9CAADC80C3EEBC73FB44661F /* Pods_MyJournal.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyJournal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A2040E972387EDD4A1C2B6FD /* Pods_MyJournalTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyJournalTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A3FFAE2F5B04611190E49CA5 /* Pods-MyJournal.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyJournal.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyJournal/Pods-MyJournal.release.xcconfig"; sourceTree = "<group>"; };
 		CC174F071E0F67560036F4E6 /* MyJournal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyJournal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC174F0A1E0F67560036F4E6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CC174F0C1E0F67560036F4E6 /* EntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryViewController.swift; sourceTree = "<group>"; };
@@ -42,6 +49,7 @@
 		CC174F2A1E0F91E20036F4E6 /* EntryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryTableViewController.swift; sourceTree = "<group>"; };
 		CC174F2C1E0F92040036F4E6 /* Entry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = "<group>"; };
 		CC174F2E1E0F94B50036F4E6 /* EntryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryTableViewCell.swift; sourceTree = "<group>"; };
+		CCB8CD001E21D56100859514 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CC3AC6D49082D2FB9713E52 /* Pods_MyJournal.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,12 +71,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		244CB97781FAB9C42684B4CE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9CAADC80C3EEBC73FB44661F /* Pods_MyJournal.framework */,
+				A2040E972387EDD4A1C2B6FD /* Pods_MyJournalTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		CC174EFE1E0F67550036F4E6 = {
 			isa = PBXGroup;
 			children = (
 				CC174F091E0F67560036F4E6 /* MyJournal */,
 				CC174F1E1E0F67560036F4E6 /* MyJournalTests */,
 				CC174F081E0F67560036F4E6 /* Products */,
+				CDCD8DA78A9EE7467733B19C /* Pods */,
+				244CB97781FAB9C42684B4CE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -92,6 +112,7 @@
 				CC174F111E0F67560036F4E6 /* Assets.xcassets */,
 				CC174F131E0F67560036F4E6 /* LaunchScreen.storyboard */,
 				CC174F161E0F67560036F4E6 /* Info.plist */,
+				CCB8CD001E21D56100859514 /* GoogleService-Info.plist */,
 			);
 			path = MyJournal;
 			sourceTree = "<group>";
@@ -105,6 +126,15 @@
 			path = MyJournalTests;
 			sourceTree = "<group>";
 		};
+		CDCD8DA78A9EE7467733B19C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				00F9C094C0CA6C2AFCB4C1EC /* Pods-MyJournal.debug.xcconfig */,
+				A3FFAE2F5B04611190E49CA5 /* Pods-MyJournal.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -112,9 +142,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CC174F241E0F67560036F4E6 /* Build configuration list for PBXNativeTarget "MyJournal" */;
 			buildPhases = (
+				67C18F11FCCA7136FA2CD1A2 /* [CP] Check Pods Manifest.lock */,
 				CC174F031E0F67560036F4E6 /* Sources */,
 				CC174F041E0F67560036F4E6 /* Frameworks */,
 				CC174F051E0F67560036F4E6 /* Resources */,
+				255EB9A083C249518D4F62B2 /* [CP] Embed Pods Frameworks */,
+				7869DCC738E7ABAF918A8635 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -189,6 +222,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CC174F151E0F67560036F4E6 /* LaunchScreen.storyboard in Resources */,
+				CCB8CD011E21D56100859514 /* GoogleService-Info.plist in Resources */,
 				CC174F121E0F67560036F4E6 /* Assets.xcassets in Resources */,
 				CC174F101E0F67560036F4E6 /* Main.storyboard in Resources */,
 			);
@@ -198,10 +232,59 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CCB8CD021E21D56100859514 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		255EB9A083C249518D4F62B2 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MyJournal/Pods-MyJournal-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		67C18F11FCCA7136FA2CD1A2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		7869DCC738E7ABAF918A8635 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MyJournal/Pods-MyJournal-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		CC174F031E0F67560036F4E6 /* Sources */ = {
@@ -349,11 +432,12 @@
 		};
 		CC174F251E0F67560036F4E6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 00F9C094C0CA6C2AFCB4C1EC /* Pods-MyJournal.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = MyJournal/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.MyJournal;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ssdewani.MyJournal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -361,11 +445,12 @@
 		};
 		CC174F261E0F67560036F4E6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A3FFAE2F5B04611190E49CA5 /* Pods-MyJournal.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = MyJournal/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.MyJournal;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ssdewani.MyJournal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
