@@ -26,11 +26,16 @@ class EntryTableViewController: UITableViewController {
         super.viewDidLoad()
         //loadSampleData()
         ref = FIRDatabase.database().reference()
-
+        loadRemoteEntries()
+        
+        
+        /*
         if let savedEntries = loadEntries() {
             entries += savedEntries
             entries.sort(by: { $0.date.compare($1.date) == .orderedDescending })
         }
+        */
+        
         
         
 
@@ -137,7 +142,7 @@ class EntryTableViewController: UITableViewController {
                 tableView.reloadData()
                 saveEntryRemote(entry: entry)            }
         }
-        saveEntries()
+//        saveEntries()
     }
 
 
@@ -180,4 +185,35 @@ class EntryTableViewController: UITableViewController {
         self.ref.child("entries").child(entry.uuid).setValue(["data": entryDict])
 
     }
+    
+    private func loadRemoteEntries() {
+        ref.child("entries").observeSingleEvent(of: .value, with: { (snapshot) in
+
+            for item in snapshot.children {
+                let child = item  as! FIRDataSnapshot
+                let childSnapshot = child.childSnapshot(forPath: "data")
+                
+                let dataDict = childSnapshot.value as? NSDictionary
+                let uuid =  child.key
+                let feelingToday = dataDict?["feelingToday"] as! String
+                let planToday = dataDict?["planToday"] as! String
+                let affirmToday = dataDict?["affirmToday"] as! String
+                let achievedToday = dataDict?["achievedToday"] as! String
+                let reflectToday = dataDict?["reflectToday"] as! String
+                let planTomorrow = dataDict?["planTomorrow"] as! String
+                let dateString = dataDict?["date"] as! String
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateStyle = .medium
+                let date = dateFormatter.date(from: dateString)
+                let entry = Entry(feelingToday: feelingToday, planToday: planToday, affirmToday: affirmToday, achievedToday: achievedToday, reflectToday: reflectToday, planTomorrow: planTomorrow, date: date!, image: nil, uuid: uuid)
+                self.entries.append(entry)
+                         }
+            self.tableView.reloadData()
+                            // ...
+        }) { (error) in
+            print(error.localizedDescription)
+        }
+    }
+    
 }
+
