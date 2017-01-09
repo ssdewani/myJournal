@@ -8,6 +8,8 @@
 
 import UIKit
 import os.log
+import Firebase
+
 
 
 class EntryTableViewController: UITableViewController {
@@ -15,16 +17,22 @@ class EntryTableViewController: UITableViewController {
     
     //MARK: Properties
     var entries = [Entry]()
+    var ref: FIRDatabaseReference!
+
     
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         //loadSampleData()
+        ref = FIRDatabase.database().reference()
+
         if let savedEntries = loadEntries() {
             entries += savedEntries
             entries.sort(by: { $0.date.compare($1.date) == .orderedDescending })
         }
+        
+        
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -122,11 +130,12 @@ class EntryTableViewController: UITableViewController {
                 entries[selectedIndexPath.row] = entry
                 entries.sort(by: { $0.date.compare($1.date) == .orderedDescending })
                 tableView.reloadData()
+                saveEntryRemote(entry: entry)
             } else {
                 entries.append(entry)
                 entries.sort(by: { $0.date.compare($1.date) == .orderedDescending })
-                tableView.reloadData()                
-            }
+                tableView.reloadData()
+                saveEntryRemote(entry: entry)            }
         }
         saveEntries()
     }
@@ -160,4 +169,15 @@ class EntryTableViewController: UITableViewController {
         return NSKeyedUnarchiver.unarchiveObject(withFile: Entry.ArchiveURL.path) as? [Entry]
     }
     
+    
+    private func saveEntryRemote(entry: Entry) {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        let dateText =  formatter.string(from: entry.date)
+        
+        let entryDict = ["feelingToday": entry.feelingToday, "planToday": entry.planToday, "affirmToday": entry.affirmToday, "achievedToday": entry.achievedToday, "reflectToday": entry.reflectToday, "planTomorrow": entry.planTomorrow, "date": dateText]
+        
+        self.ref.child("entries").child(entry.uuid).setValue(["data": entryDict])
+
+    }
 }

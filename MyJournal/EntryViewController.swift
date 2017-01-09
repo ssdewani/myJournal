@@ -30,6 +30,7 @@ class EntryViewController: UIViewController, UINavigationControllerDelegate, UIT
     @IBOutlet weak var achievedTodayTextViewHeight: NSLayoutConstraint!
 
     var entry: Entry?
+    var uuid: String?
     
     let minTextViewHeight: CGFloat = 32
     let maxTextViewHeight: CGFloat = 192
@@ -47,8 +48,8 @@ class EntryViewController: UIViewController, UINavigationControllerDelegate, UIT
             let planTomorrow = planTomorrowLabel.text ?? ""
             let date = datePicker.date
             let image = photoImageView.image
-        
-            entry = Entry(feelingToday: feelingToday, planToday: planToday, affirmToday: affirmToday, achievedToday: achievedToday, reflectToday: reflectToday, planTomorrow: planTomorrow, date: date, image: image)
+
+            entry = Entry(feelingToday: feelingToday, planToday: planToday, affirmToday: affirmToday, achievedToday: achievedToday, reflectToday: reflectToday, planTomorrow: planTomorrow, date: date, image: image, uuid: uuid!)
         }
         
         
@@ -99,8 +100,10 @@ class EntryViewController: UIViewController, UINavigationControllerDelegate, UIT
             planTomorrowLabel.text = entry.planTomorrow
             datePicker.date = entry.date
             photoImageView.image = entry.image
+            uuid = entry.uuid
         } else {
             datePicker.date = Date()
+            uuid = UUID().uuidString
         }
         
         refreshTextViewHeight(textView: feelingTodayLabel, textViewHeightContraint: feelingTodayTextViewHeight)
