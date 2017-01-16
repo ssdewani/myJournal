@@ -6,6 +6,7 @@ target 'MyJournal' do
   use_frameworks!
 
   # Pods for MyJournal
+  pod 'Firebase/Auth'
   pod 'Firebase/Core'
   pod 'Firebase/Database'
 
