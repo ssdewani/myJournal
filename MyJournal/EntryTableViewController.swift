@@ -9,7 +9,7 @@
 import UIKit
 import os.log
 import Firebase
-
+import FirebaseAuth
 
 
 class EntryTableViewController: UITableViewController {
@@ -18,6 +18,7 @@ class EntryTableViewController: UITableViewController {
     //MARK: Properties
     var entries = [Entry]()
     var ref: FIRDatabaseReference!
+    var uid: String?
 
     
     
@@ -25,25 +26,12 @@ class EntryTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //loadSampleData()
-        ref = FIRDatabase.database().reference()
-        loadRemoteEntries()
-        
-        
-        /*
-        if let savedEntries = loadEntries() {
-            entries += savedEntries
-            entries.sort(by: { $0.date.compare($1.date) == .orderedDescending })
+        FIRAuth.auth()?.signInAnonymously() { (user, error) in
+            self.uid =  user!.uid
+            self.ref = FIRDatabase.database().reference()
+            self.loadRemoteEntries()
         }
-        */
         
-        
-        
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
     override func didReceiveMemoryWarning() {
@@ -182,12 +170,12 @@ class EntryTableViewController: UITableViewController {
         
         let entryDict = ["feelingToday": entry.feelingToday, "planToday": entry.planToday, "affirmToday": entry.affirmToday, "achievedToday": entry.achievedToday, "reflectToday": entry.reflectToday, "planTomorrow": entry.planTomorrow, "date": dateText]
         
-        self.ref.child("entries").child(entry.uuid).setValue(["data": entryDict])
+        self.ref.child(uid!).child("entries").child(entry.uuid).setValue(["data": entryDict])
 
     }
     
     private func loadRemoteEntries() {
-        ref.child("entries").observeSingleEvent(of: .value, with: { (snapshot) in
+        ref.child(uid!).child("entries").observeSingleEvent(of: .value, with: { (snapshot) in
 
             for item in snapshot.children {
                 let child = item  as! FIRDataSnapshot
