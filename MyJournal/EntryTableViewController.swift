@@ -63,9 +63,9 @@ class EntryTableViewController: UITableViewController {
         cell.dateLabel.text =  formatter.string(from: entries[indexPath.row].date)
     
         let snippet = entries[indexPath.row].feelingToday as String
-        let index = snippet.index(snippet.startIndex, offsetBy: min(snippet.characters.count,25))
-        cell.snippetLabel.text = snippet.substring(to: index)
-        
+//        let index = snippet.index(snippet.startIndex, offsetBy: min(snippet.characters.count,25))
+//        cell.snippetLabel.text = snippet.substring(to: index)
+        cell.snippetLabel.text  = snippet
         cell.photoImageView.image = entries[indexPath.row].image
     
         return cell
