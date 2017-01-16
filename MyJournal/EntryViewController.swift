@@ -142,6 +142,13 @@ class EntryViewController: UIViewController, UINavigationControllerDelegate, UIT
         }
      
     }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.text == "<Enter Text>" {
+            textView.text = ""
+        }
+    }
+    
 
     //MARK: UIImagePicketControllerDelegate
 
