@@ -145,8 +145,48 @@ class EntryViewController: UIViewController, UINavigationControllerDelegate, UIT
     
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.text == "<Enter Text>" {
-            textView.text = ""
+            if textView != affirmTodayLabel {
+                textView.text = " \u{2022} "
+            } else {
+                textView.text = ""
+            }
         }
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        // If the replacement text is "\n" and the
+        // text view is the one you want bullet points
+        // for
+        if (text == "\n") {
+            // If the replacement text is being added to the end of the
+            // text view, i.e. the new index is thde length of the old
+            // text view's text...
+            
+            
+            if range.location == textView.text.characters.count {
+                // Simply add the newline and bullet point to the end
+                let updatedText: String = textView.text! + "\n \u{2022} "
+                textView.text = updatedText
+            }
+            else {
+                
+                // Get the replacement range of the UITextView
+                let textRange: UITextRange = textView.selectedTextRange!
+                // Insert that newline character *and* a bullet point
+                // at the point at which the user inputted just the
+                // newline character
+                textView.replace(textRange, withText: "\n \u{2022} ")
+
+                let cursor: NSRange = NSMakeRange(range.location + "\n \u{2022} ".characters.count, 0)
+                textView.selectedRange = cursor
+            }
+            
+            return false
+            
+            
+        }
+        // Else return yes
+        return true
     }
     
 
