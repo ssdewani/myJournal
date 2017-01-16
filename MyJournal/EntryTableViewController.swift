@@ -19,8 +19,9 @@ class EntryTableViewController: UITableViewController {
     //MARK: Properties
     var entries = [Entry]()
     var ref: FIRDatabaseReference!
-    var uid: String?
-
+    var uid: String!
+    var storage: FIRStorage!
+    var storageRef: FIRStorageReference!
     
     
     
@@ -31,9 +32,8 @@ class EntryTableViewController: UITableViewController {
             self.uid =  user!.uid
             self.ref = FIRDatabase.database().reference()
             self.loadRemoteEntries()
-//            let storage = FIRStorage.storage()
-//            let storageRef = storage.reference(forURL: "gs://myjournal-d55cc.appspot.com")
-            
+            self.storage = FIRStorage.storage()
+            self.storageRef = self.storage.reference(forURL: "gs://myjournal-d55cc.appspot.com")
         }
         
     }
@@ -175,6 +175,9 @@ class EntryTableViewController: UITableViewController {
         let entryDict = ["feelingToday": entry.feelingToday, "planToday": entry.planToday, "affirmToday": entry.affirmToday, "achievedToday": entry.achievedToday, "reflectToday": entry.reflectToday, "planTomorrow": entry.planTomorrow, "date": dateText]
         
         self.ref.child(uid!).child("entries").child(entry.uuid).setValue(["data": entryDict])
+        if (entry.image != nil) {
+            saveImage(uuid: entry.uuid, image: entry.image!)
+        }
 
     }
     
@@ -198,6 +201,7 @@ class EntryTableViewController: UITableViewController {
                 dateFormatter.dateStyle = .medium
                 let date = dateFormatter.date(from: dateString)
                 let entry = Entry(feelingToday: feelingToday, planToday: planToday, affirmToday: affirmToday, achievedToday: achievedToday, reflectToday: reflectToday, planTomorrow: planTomorrow, date: date!, image: nil, uuid: uuid)
+                self.loadImage(entry: entry)
                 self.entries.append(entry)
                          }
             self.tableView.reloadData()
@@ -207,6 +211,35 @@ class EntryTableViewController: UITableViewController {
         }
     }
     
+    private func saveImage (uuid:String, image: UIImage) {
+        let data = UIImageJPEGRepresentation(image, 1.0)
+        let path = uid + "/" + uuid + ".jpg"
+        let imageRef = storageRef.child(path)
+        let uploadTask = imageRef.put(data!, metadata: nil) { (metadata,error) in
+            guard let metadata = metadata else {
+                // Uh-oh, an error occurred!
+                return
+            }
+            let downloadURL = metadata.downloadURL
+            print(downloadURL)
+        }
+    }
+
+    
+    private func loadImage (entry:Entry) {
+        let path = uid + "/" + entry.uuid + ".jpg"
+        let imageRef = storageRef.child(path)
+        imageRef.data(withMaxSize: 2 * 1024 * 1024) { data, error in
+            if let error = error {
+                // Uh-oh, an error occurred!
+            } else {
+                let image = UIImage(data: data!)
+                entry.image = image
+                let newIndex = self.entries.index(of: entry)
+                let newIndexPath = IndexPath(row: newIndex!, section:0)
+                self.tableView.reloadRows(at: [newIndexPath], with: .automatic)
+            }
+        }    }
 
 }
 

@@ -161,7 +161,11 @@ class EntryViewController: UIViewController, UINavigationControllerDelegate, UIT
             else {
                 fatalError("Expected a dictionary containing an image, but was provided the following: \(info)")
         }
-        photoImageView.image = selectedImage
+        if selectedImage.size.width > 700 {
+            photoImageView.image = resizeImage(image: selectedImage, newWidth: 700)
+        } else {
+            photoImageView.image = selectedImage
+        }
         dismiss(animated: true, completion: nil)
     }
     
@@ -182,6 +186,18 @@ class EntryViewController: UIViewController, UINavigationControllerDelegate, UIT
         }
     }
     
+    private func resizeImage(image: UIImage, newWidth: CGFloat) -> UIImage? {
+        
+        let scale = newWidth / image.size.width
+        let newHeight = image.size.height * scale
+        UIGraphicsBeginImageContext(CGSize(width: newWidth, height: newHeight))
+        image.draw(in: CGRect(x: 0, y: 0, width: newWidth, height: newHeight))
+        
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage
+    }
     
 }
 
