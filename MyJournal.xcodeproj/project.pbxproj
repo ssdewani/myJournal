@@ -188,6 +188,7 @@
 				TargetAttributes = {
 					CC174F061E0F67560036F4E6 = {
 						CreatedOnToolsVersion = 8.2;
+						DevelopmentTeam = 5Z6HJMDT99;
 						ProvisioningStyle = Automatic;
 					};
 					CC174F1A1E0F67560036F4E6 = {
@@ -435,6 +436,7 @@
 			baseConfigurationReference = 00F9C094C0CA6C2AFCB4C1EC /* Pods-MyJournal.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 5Z6HJMDT99;
 				INFOPLIST_FILE = MyJournal/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ssdewani.MyJournal;
@@ -448,6 +450,7 @@
 			baseConfigurationReference = A3FFAE2F5B04611190E49CA5 /* Pods-MyJournal.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 5Z6HJMDT99;
 				INFOPLIST_FILE = MyJournal/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ssdewani.MyJournal;

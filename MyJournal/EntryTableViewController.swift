@@ -10,6 +10,7 @@ import UIKit
 import os.log
 import Firebase
 import FirebaseAuth
+import FirebaseStorage
 
 
 class EntryTableViewController: UITableViewController {
@@ -30,6 +31,9 @@ class EntryTableViewController: UITableViewController {
             self.uid =  user!.uid
             self.ref = FIRDatabase.database().reference()
             self.loadRemoteEntries()
+//            let storage = FIRStorage.storage()
+//            let storageRef = storage.reference(forURL: "gs://myjournal-d55cc.appspot.com")
+            
         }
         
     }
@@ -203,5 +207,6 @@ class EntryTableViewController: UITableViewController {
         }
     }
     
+
 }
 
