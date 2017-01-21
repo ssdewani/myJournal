@@ -256,6 +256,7 @@ class EntryViewController: UIViewController, UINavigationControllerDelegate, UIT
                 // Uh-oh, an error occurred!
             } else {
                 let image = UIImage(data: data!)
+                entry.image = image
                 self.photoImageView.image = image
                 
             }
