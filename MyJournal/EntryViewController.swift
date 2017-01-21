@@ -105,7 +105,16 @@ class EntryViewController: UIViewController, UINavigationControllerDelegate, UIT
             datePicker.date = Date()
             uuid = UUID().uuidString
         }
-        
+        refreshTextViewHeight(textView: feelingTodayLabel, textViewHeightContraint: feelingTodayTextViewHeight)
+        refreshTextViewHeight(textView: planTodayLabel, textViewHeightContraint: planTodayTextViewHeight)
+        refreshTextViewHeight(textView: affirmTodayLabel, textViewHeightContraint: affirmTodayTextViewHeight)
+        refreshTextViewHeight(textView: achievedTodayLabel, textViewHeightContraint: achievedTodayTextViewHeight)
+        refreshTextViewHeight(textView: planTomorrowLabel, textViewHeightContraint: planTomorrowTextViewHeight)
+        refreshTextViewHeight(textView: reflectTodayLabel, textViewHeightContraint: reflectTodayTextViewHeight)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         refreshTextViewHeight(textView: feelingTodayLabel, textViewHeightContraint: feelingTodayTextViewHeight)
         refreshTextViewHeight(textView: planTodayLabel, textViewHeightContraint: planTodayTextViewHeight)
         refreshTextViewHeight(textView: affirmTodayLabel, textViewHeightContraint: affirmTodayTextViewHeight)
@@ -113,7 +122,6 @@ class EntryViewController: UIViewController, UINavigationControllerDelegate, UIT
         refreshTextViewHeight(textView: planTomorrowLabel, textViewHeightContraint: planTomorrowTextViewHeight)
         refreshTextViewHeight(textView: reflectTodayLabel, textViewHeightContraint: reflectTodayTextViewHeight)
         
-    
     }
 
     override func didReceiveMemoryWarning() {
@@ -213,6 +221,9 @@ class EntryViewController: UIViewController, UINavigationControllerDelegate, UIT
             textViewHeightContraint.constant = height + 10 // change the value of NSLayoutConstraint
             textView.setContentOffset(CGPoint.zero, animated: false) // scroll to top to avoid "wrong contentOffset" artefact when line count changes
         }
+
+//        let sizeThatShouldFitTheContent: CGSize = textView.sizeThatFits(textView.frame.size)
+//        textViewHeightContraint.constant = sizeThatShouldFitTheContent.height
     }
     
     private func resizeImage(image: UIImage, newWidth: CGFloat) -> UIImage? {
