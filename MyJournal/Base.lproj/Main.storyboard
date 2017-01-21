@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1217" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="1LV-f5-w3B">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1217" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Ccu-Eu-bS1">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -28,19 +28,19 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t4z-Ut-D5X">
-                                            <rect key="frame" x="81.5" y="16" width="277.5" height="20.5"/>
+                                            <rect key="frame" x="81" y="16" width="278" height="21"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Snippet" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Bo-Lm-c9R">
-                                            <rect key="frame" x="81.5" y="44.5" width="277.5" height="21"/>
+                                            <rect key="frame" x="81" y="45" width="278" height="21"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qEO-DR-Lia">
-                                            <rect key="frame" x="0.0" y="0.0" width="73.5" height="73.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="73" height="73"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="qEO-DR-Lia" secondAttribute="height" multiplier="1:1" id="CN7-pV-X1p"/>
                                             </constraints>
@@ -72,6 +72,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Journal Entries" id="fnc-JX-Ey9">
+                        <barButtonItem key="leftBarButtonItem" title="Sign Out" id="cbk-8T-8I1">
+                            <connections>
+                                <action selector="didTapSignOut:" destination="Ove-LY-D36" id="lzw-iR-FsB"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Ila-zE-11G">
                             <connections>
                                 <segue destination="Rmi-kQ-ljB" kind="presentation" identifier="AddItem" id="irp-RH-bZv"/>
@@ -275,12 +280,40 @@
             </objects>
             <point key="canvasLocation" x="2015.2" y="129.08545727136433"/>
         </scene>
+        <!--Sign In View Controller-->
+        <scene sceneID="yOf-ld-Zme">
+            <objects>
+                <viewController id="Ccu-Eu-bS1" customClass="SignInViewController" customModule="MyJournal" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="EL4-0H-dWe"/>
+                        <viewControllerLayoutGuide type="bottom" id="9BT-jW-hf9"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="NOJ-PV-Y67">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="doA-K0-kjb" customClass="GIDSignInButton">
+                                <rect key="frame" x="67" y="269" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <segue destination="1LV-f5-w3B" kind="presentation" identifier="showTableSegue" id="nqz-x1-hvF"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4bI-Xp-Fsv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1492" y="117"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="VQc-52-9a5">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="1LV-f5-w3B" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="7ZD-vb-bsm">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="7ZD-vb-bsm">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -291,14 +324,14 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6yw-h8-DiK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-696.79999999999995" y="139.880059970015"/>
+            <point key="canvasLocation" x="-734" y="384"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="DpY-cK-2yc">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Rmi-kQ-ljB" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="2rs-Lc-azN">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="2rs-Lc-azN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

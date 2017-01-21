@@ -9,11 +9,10 @@
 import UIKit
 import os.log
 import Firebase
-import FirebaseAuth
 import FirebaseStorage
+import GoogleSignIn
 
-var uid: String!
-var storageRef: FIRStorageReference!
+
 
 
 class EntryTableViewController: UITableViewController {
@@ -21,21 +20,12 @@ class EntryTableViewController: UITableViewController {
     
     //MARK: Properties
     var entries = [Entry]()
-    var ref: FIRDatabaseReference!
-    var storage: FIRStorage!
-    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         //loadSampleData()
-        FIRAuth.auth()?.signInAnonymously() { (user, error) in
-            uid =  user!.uid
-            self.ref = FIRDatabase.database().reference()
-            self.loadRemoteEntries()
-            self.storage = FIRStorage.storage()
-            storageRef = self.storage.reference(forURL: "gs://myjournal-d55cc.appspot.com")
-        }
+        self.loadRemoteEntries()
         
     }
 
@@ -138,6 +128,13 @@ class EntryTableViewController: UITableViewController {
 //        saveEntries()
     }
 
+    
+    
+    @IBAction func didTapSignOut(_ sender: Any) {
+        GIDSignIn.sharedInstance().signOut()
+        dismiss(animated: true, completion: nil)
+    }
+    
 
 /*
     private func loadSampleData() {
@@ -175,7 +172,7 @@ class EntryTableViewController: UITableViewController {
         
         let entryDict = ["feelingToday": entry.feelingToday, "planToday": entry.planToday, "affirmToday": entry.affirmToday, "achievedToday": entry.achievedToday, "reflectToday": entry.reflectToday, "planTomorrow": entry.planTomorrow, "date": dateText]
         
-        self.ref.child(uid!).child("entries").child(entry.uuid).setValue(["data": entryDict])
+        ref.child(uid!).child("entries").child(entry.uuid).setValue(["data": entryDict])
         if (entry.image != nil) {
             saveImage(uuid: entry.uuid, image: entry.image!, isThumbnail: false)
             saveImage(uuid: entry.uuid, image: entry.thumbnail!, isThumbnail: true)

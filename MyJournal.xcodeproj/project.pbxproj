@@ -17,6 +17,7 @@
 		CC174F2B1E0F91E20036F4E6 /* EntryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC174F2A1E0F91E20036F4E6 /* EntryTableViewController.swift */; };
 		CC174F2D1E0F92050036F4E6 /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC174F2C1E0F92040036F4E6 /* Entry.swift */; };
 		CC174F2F1E0F94B50036F4E6 /* EntryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC174F2E1E0F94B50036F4E6 /* EntryTableViewCell.swift */; };
+		CC697BD21E32FBE200922A88 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC697BD11E32FBE200922A88 /* SignInViewController.swift */; };
 		CCB8CD011E21D56100859514 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CCB8CD001E21D56100859514 /* GoogleService-Info.plist */; };
 		CCB8CD021E21D56100859514 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CCB8CD001E21D56100859514 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
@@ -49,6 +50,7 @@
 		CC174F2A1E0F91E20036F4E6 /* EntryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryTableViewController.swift; sourceTree = "<group>"; };
 		CC174F2C1E0F92040036F4E6 /* Entry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = "<group>"; };
 		CC174F2E1E0F94B50036F4E6 /* EntryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryTableViewCell.swift; sourceTree = "<group>"; };
+		CC697BD11E32FBE200922A88 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		CCB8CD001E21D56100859514 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -109,6 +111,7 @@
 				CC174F2E1E0F94B50036F4E6 /* EntryTableViewCell.swift */,
 				CC174F2A1E0F91E20036F4E6 /* EntryTableViewController.swift */,
 				CC174F0E1E0F67560036F4E6 /* Main.storyboard */,
+				CC697BD11E32FBE200922A88 /* SignInViewController.swift */,
 				CC174F111E0F67560036F4E6 /* Assets.xcassets */,
 				CC174F131E0F67560036F4E6 /* LaunchScreen.storyboard */,
 				CC174F161E0F67560036F4E6 /* Info.plist */,
@@ -294,6 +297,7 @@
 			files = (
 				CC174F2D1E0F92050036F4E6 /* Entry.swift in Sources */,
 				CC174F2F1E0F94B50036F4E6 /* EntryTableViewCell.swift in Sources */,
+				CC697BD21E32FBE200922A88 /* SignInViewController.swift in Sources */,
 				CC174F0D1E0F67560036F4E6 /* EntryViewController.swift in Sources */,
 				CC174F2B1E0F91E20036F4E6 /* EntryTableViewController.swift in Sources */,
 				CC174F0B1E0F67560036F4E6 /* AppDelegate.swift in Sources */,
