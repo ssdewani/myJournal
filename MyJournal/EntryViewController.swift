@@ -167,6 +167,12 @@ class EntryViewController: UIViewController, UINavigationControllerDelegate, UIT
     }
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        
+        let textPosition2 = textView.position(from: textView.beginningOfDocument, offset: (range.location))
+        let textPosition1 = textView.position(from: textView.beginningOfDocument, offset: (range.location - 2)) ?? textPosition2
+        let trailingRange = textView.textRange(from: textPosition1!, to: textPosition2!)
+        let trailingText = textView.text(in: trailingRange!)
+        
         if (text == "\n") && (textView != affirmTodayLabel)  {
             
             if range.location == textView.text.characters.count {
@@ -186,6 +192,11 @@ class EntryViewController: UIViewController, UINavigationControllerDelegate, UIT
             return false
             
             
+        } else if (trailingText == "\u{2022} ") && (text != ""){
+            let capitalizedCharacter = text.capitalized
+            textView.replace(textView.selectedTextRange!, withText: capitalizedCharacter)
+            print(capitalizedCharacter)
+            return false
         }
         // Else return yes
         return true
