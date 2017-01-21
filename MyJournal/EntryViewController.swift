@@ -48,8 +48,9 @@ class EntryViewController: UIViewController, UINavigationControllerDelegate, UIT
             let planTomorrow = planTomorrowLabel.text ?? ""
             let date = datePicker.date
             let image = photoImageView.image
+            let thumbnail = resizeImage(image: image!, newWidth: 80)
 
-            entry = Entry(feelingToday: feelingToday, planToday: planToday, affirmToday: affirmToday, achievedToday: achievedToday, reflectToday: reflectToday, planTomorrow: planTomorrow, date: date, image: image, uuid: uuid!)
+            entry = Entry(feelingToday: feelingToday, planToday: planToday, affirmToday: affirmToday, achievedToday: achievedToday, reflectToday: reflectToday, planTomorrow: planTomorrow, date: date, image: image, thumbnail: thumbnail, uuid: uuid!)
         }
         
         
@@ -99,7 +100,11 @@ class EntryViewController: UIViewController, UINavigationControllerDelegate, UIT
             reflectTodayLabel.text = entry.reflectToday
             planTomorrowLabel.text = entry.planTomorrow
             datePicker.date = entry.date
-            photoImageView.image = entry.image
+            if entry.image != nil {
+                photoImageView.image = entry.image
+            } else {
+                loadImage(entry: entry)
+            }
             uuid = entry.uuid
         } else {
             datePicker.date = Date()
@@ -239,5 +244,22 @@ class EntryViewController: UIViewController, UINavigationControllerDelegate, UIT
         return newImage
     }
     
+    
+    private func loadImage (entry:Entry) {
+        
+        var path: String
+        path = uid + "/" + entry.uuid + ".jpg"
+        
+        let imageRef = storageRef.child(path)
+        imageRef.data(withMaxSize: 2 * 1024 * 1024) { data, error in
+            if let error = error {
+                // Uh-oh, an error occurred!
+            } else {
+                let image = UIImage(data: data!)
+                self.photoImageView.image = image
+                
+            }
+        }
+    }
 }
 

@@ -19,6 +19,8 @@ class Entry: NSObject, NSCoding {
     var planTomorrow: String
     var date: Date
     var image: UIImage?
+    var thumbnail: UIImage?
+    
     
     struct PropertyKey {
         static let feelingToday = "feelingToday"
@@ -29,6 +31,7 @@ class Entry: NSObject, NSCoding {
         static let planTomorrow = "planTomorrow"
         static let date = "date"
         static let image = "image"
+        static let thumbnail = "thumbnail"
         static let uuid = "uuid"
     }
     
@@ -37,7 +40,7 @@ class Entry: NSObject, NSCoding {
     
     //MARK:Init
     
-    init(feelingToday: String, planToday: String, affirmToday: String, achievedToday: String, reflectToday: String, planTomorrow: String, date: Date, image: UIImage?, uuid: String) {
+    init(feelingToday: String, planToday: String, affirmToday: String, achievedToday: String, reflectToday: String, planTomorrow: String, date: Date, image: UIImage?, thumbnail: UIImage?, uuid: String) {
         self.uuid = uuid
         self.feelingToday = feelingToday
         self.planToday = planToday
@@ -47,6 +50,7 @@ class Entry: NSObject, NSCoding {
         self.planTomorrow = planTomorrow
         self.date = date
         self.image = image
+        self.thumbnail = thumbnail
     }
     
     //Mark: NSCoding
@@ -60,7 +64,7 @@ class Entry: NSObject, NSCoding {
         aCoder.encode(planTomorrow, forKey: PropertyKey.planTomorrow)
         aCoder.encode(date, forKey: PropertyKey.date)
         aCoder.encode(image, forKey: PropertyKey.image)
-        
+        aCoder.encode(thumbnail, forKey: PropertyKey.thumbnail)
     }
     
     required convenience init?(coder aDecoder: NSCoder) {
@@ -73,8 +77,9 @@ class Entry: NSObject, NSCoding {
         let planTomorrow = aDecoder.decodeObject(forKey: PropertyKey.planTomorrow) as? String
         let date = aDecoder.decodeObject(forKey: PropertyKey.date) as? Date
         let image = aDecoder.decodeObject(forKey: PropertyKey.image) as? UIImage
+        let thumbnail = aDecoder.decodeObject(forKey: PropertyKey.thumbnail) as? UIImage
         
-        self.init(feelingToday: feelingToday!, planToday: planToday!, affirmToday: affirmToday!, achievedToday: achievedToday!, reflectToday: reflectToday!, planTomorrow: planTomorrow!, date: date!, image: image, uuid: uuid!)
+        self.init(feelingToday: feelingToday!, planToday: planToday!, affirmToday: affirmToday!, achievedToday: achievedToday!, reflectToday: reflectToday!, planTomorrow: planTomorrow!, date: date!, image: image, thumbnail: thumbnail, uuid: uuid!)
     }
     
 }

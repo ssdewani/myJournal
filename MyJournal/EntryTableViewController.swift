@@ -12,6 +12,9 @@ import Firebase
 import FirebaseAuth
 import FirebaseStorage
 
+var uid: String!
+var storageRef: FIRStorageReference!
+
 
 class EntryTableViewController: UITableViewController {
     
@@ -19,9 +22,7 @@ class EntryTableViewController: UITableViewController {
     //MARK: Properties
     var entries = [Entry]()
     var ref: FIRDatabaseReference!
-    var uid: String!
     var storage: FIRStorage!
-    var storageRef: FIRStorageReference!
     
     
     
@@ -29,11 +30,11 @@ class EntryTableViewController: UITableViewController {
         super.viewDidLoad()
         //loadSampleData()
         FIRAuth.auth()?.signInAnonymously() { (user, error) in
-            self.uid =  user!.uid
+            uid =  user!.uid
             self.ref = FIRDatabase.database().reference()
             self.loadRemoteEntries()
             self.storage = FIRStorage.storage()
-            self.storageRef = self.storage.reference(forURL: "gs://myjournal-d55cc.appspot.com")
+            storageRef = self.storage.reference(forURL: "gs://myjournal-d55cc.appspot.com")
         }
         
     }
@@ -66,7 +67,7 @@ class EntryTableViewController: UITableViewController {
 //        let index = snippet.index(snippet.startIndex, offsetBy: min(snippet.characters.count,25))
 //        cell.snippetLabel.text = snippet.substring(to: index)
         cell.snippetLabel.text  = snippet
-        cell.photoImageView.image = entries[indexPath.row].image
+        cell.photoImageView.image = entries[indexPath.row].thumbnail
     
         return cell
     }
@@ -176,7 +177,8 @@ class EntryTableViewController: UITableViewController {
         
         self.ref.child(uid!).child("entries").child(entry.uuid).setValue(["data": entryDict])
         if (entry.image != nil) {
-            saveImage(uuid: entry.uuid, image: entry.image!)
+            saveImage(uuid: entry.uuid, image: entry.image!, isThumbnail: false)
+            saveImage(uuid: entry.uuid, image: entry.thumbnail!, isThumbnail: true)
         }
 
     }
@@ -200,8 +202,8 @@ class EntryTableViewController: UITableViewController {
                 let dateFormatter = DateFormatter()
                 dateFormatter.dateStyle = .medium
                 let date = dateFormatter.date(from: dateString)
-                let entry = Entry(feelingToday: feelingToday, planToday: planToday, affirmToday: affirmToday, achievedToday: achievedToday, reflectToday: reflectToday, planTomorrow: planTomorrow, date: date!, image: nil, uuid: uuid)
-                self.loadImage(entry: entry)
+                let entry = Entry(feelingToday: feelingToday, planToday: planToday, affirmToday: affirmToday, achievedToday: achievedToday, reflectToday: reflectToday, planTomorrow: planTomorrow, date: date!, image: nil, thumbnail: nil, uuid: uuid)
+                self.loadThumbnail(entry: entry)
                 self.entries.append(entry)
                          }
             self.tableView.reloadData()
@@ -211,9 +213,16 @@ class EntryTableViewController: UITableViewController {
         }
     }
     
-    private func saveImage (uuid:String, image: UIImage) {
+    private func saveImage (uuid:String, image: UIImage, isThumbnail: Bool) {
         let data = UIImageJPEGRepresentation(image, 1.0)
-        let path = uid + "/" + uuid + ".jpg"
+        var path: String
+        
+        if isThumbnail {
+            path = uid + "/" + uuid + "_thumbnail.jpg"
+        } else {
+            path = uid + "/" + uuid + ".jpg"
+        }
+        
         let imageRef = storageRef.child(path)
         let uploadTask = imageRef.put(data!, metadata: nil) { (metadata,error) in
             guard let metadata = metadata else {
@@ -226,20 +235,25 @@ class EntryTableViewController: UITableViewController {
     }
 
     
-    private func loadImage (entry:Entry) {
-        let path = uid + "/" + entry.uuid + ".jpg"
+    private func loadThumbnail (entry:Entry) {
+
+        var path: String
+        path = uid + "/" + entry.uuid + "_thumbnail.jpg"
+        
         let imageRef = storageRef.child(path)
         imageRef.data(withMaxSize: 2 * 1024 * 1024) { data, error in
             if let error = error {
                 // Uh-oh, an error occurred!
             } else {
                 let image = UIImage(data: data!)
-                entry.image = image
+                entry.thumbnail = image
+                
                 let newIndex = self.entries.index(of: entry)
                 let newIndexPath = IndexPath(row: newIndex!, section:0)
                 self.tableView.reloadRows(at: [newIndexPath], with: .automatic)
             }
-        }    }
+        }
+    }
 
 }
 
