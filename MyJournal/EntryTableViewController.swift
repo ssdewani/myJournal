@@ -206,6 +206,7 @@ class EntryTableViewController: UITableViewController {
                 self.loadThumbnail(entry: entry)
                 self.entries.append(entry)
                          }
+            self.entries.sort(by: { $0.date.compare($1.date) == .orderedDescending })
             self.tableView.reloadData()
                             // ...
         }) { (error) in
