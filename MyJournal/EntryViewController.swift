@@ -168,10 +168,6 @@ class EntryViewController: UIViewController, UINavigationControllerDelegate, UIT
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         
-        let textPosition2 = textView.position(from: textView.beginningOfDocument, offset: (range.location))
-        let textPosition1 = textView.position(from: textView.beginningOfDocument, offset: (range.location - 2)) ?? textPosition2
-        let trailingRange = textView.textRange(from: textPosition1!, to: textPosition2!)
-        let trailingText = textView.text(in: trailingRange!)
         
         if (text == "\n") && (textView != affirmTodayLabel)  {
             
@@ -190,19 +186,34 @@ class EntryViewController: UIViewController, UINavigationControllerDelegate, UIT
             }
             
             return false
+
+        } else if (text == " ") && textView.text.characters.count >= 4 {
+        
+            let workingSet = CharacterSet.whitespacesAndNewlines
+            let fullRange = rangeWithString(string: textView.text, range: NSMakeRange(0,range.location-1))
+            let spaceRange = textView.text.rangeOfCharacter(from: workingSet, options: .backwards, range: fullRange)
+            let lastWordRange = spaceRange!.upperBound..<textView.text.index(textView.text.startIndex, offsetBy: range.location+range.length)
+            let bulletRange = textView.text.index(lastWordRange.lowerBound, offsetBy: -3) ..< lastWordRange.lowerBound
             
+            if textView.text[bulletRange] == " \u{2022} " {
             
-        } else if (trailingText == "\u{2022} ") && (text != ""){
-            let capitalizedCharacter = text.capitalized
-            textView.replace(textView.selectedTextRange!, withText: capitalizedCharacter)
-            print(capitalizedCharacter)
-            return false
+                let capitalizedLastWord = textView.text[lastWordRange].capitalized
+                print (capitalizedLastWord)
+                textView.text.replaceSubrange(lastWordRange, with: capitalizedLastWord)
+            
+            }
+            
         }
-        // Else return yes
         return true
     }
     
 
+    
+    private func rangeWithString(string : String, range : NSRange) -> Range<String.Index> {
+        return string.index(string.startIndex, offsetBy: range.location)..<string.index(string.startIndex, offsetBy: range.location+range.length)
+    }
+    
+    
     //MARK: UIImagePicketControllerDelegate
 
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
