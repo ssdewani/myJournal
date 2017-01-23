@@ -192,16 +192,27 @@ class EntryViewController: UIViewController, UINavigationControllerDelegate, UIT
             let workingSet = CharacterSet.whitespacesAndNewlines
             let fullRange = rangeWithString(string: textView.text, range: NSMakeRange(0,range.location-1))
             let spaceRange = textView.text.rangeOfCharacter(from: workingSet, options: .backwards, range: fullRange)
-            let lastWordRange = spaceRange!.upperBound..<textView.text.index(textView.text.startIndex, offsetBy: range.location+range.length)
-            let bulletRange = textView.text.index(lastWordRange.lowerBound, offsetBy: -3) ..< lastWordRange.lowerBound
-            
-            if textView.text[bulletRange] == " \u{2022} " {
-            
-                let capitalizedLastWord = textView.text[lastWordRange].capitalized
-                print (capitalizedLastWord)
-                textView.text.replaceSubrange(lastWordRange, with: capitalizedLastWord)
-            
+            if spaceRange != nil {
+                
+                let lastWordRange = spaceRange!.upperBound..<textView.text.index(textView.text.startIndex, offsetBy: range.location+range.length)
+                
+                let bulletStartIndex = textView.text.index(lastWordRange.lowerBound, offsetBy: -3, limitedBy: textView.text.startIndex)
+                
+                if bulletStartIndex != nil {
+                    
+                    let bulletRange = bulletStartIndex! ..< lastWordRange.lowerBound
+                    
+                    if textView.text[bulletRange] == " \u{2022} " {
+                        
+                        let capitalizedLastWord = textView.text[lastWordRange].capitalized
+                        print (capitalizedLastWord)
+                        textView.text.replaceSubrange(lastWordRange, with: capitalizedLastWord)
+                        
+                    }
+                    
+                }
             }
+            
             
         }
         return true
