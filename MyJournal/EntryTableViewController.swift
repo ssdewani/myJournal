@@ -71,17 +71,21 @@ class EntryTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
+            let entry = entries[indexPath.row]
+            deleteEntryRemote(entry: entry)
+            deleteImage(entry: entry)
+            entries.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
-    */
+    
 
     /*
     // Override to support rearranging the table view.
@@ -180,6 +184,13 @@ class EntryTableViewController: UITableViewController {
 
     }
     
+    private func deleteEntryRemote(entry: Entry) {
+        
+        
+        ref.child(uid!).child("entries").child(entry.uuid).removeValue()
+    }
+    
+    
     private func loadRemoteEntries() {
         ref.child(uid!).child("entries").observeSingleEvent(of: .value, with: { (snapshot) in
 
@@ -232,6 +243,29 @@ class EntryTableViewController: UITableViewController {
         }
     }
 
+    private func deleteImage (entry: Entry) {
+        let imagePath = uid + "/" + entry.uuid + "_thumbnail.jpg"
+        let thumbnailPath = uid + "/" + entry.uuid + ".jpg"
+        let imageRef = storageRef.child(imagePath)
+        let thumbnailRef = storageRef.child(thumbnailPath)
+        imageRef.delete(completion: { error in
+            if error != nil {
+                // Uh-oh, an error occurred!
+            } else {
+                // File deleted successfully
+            }
+        })
+        
+        thumbnailRef.delete(completion: { error in
+            if error != nil {
+                // Uh-oh, an error occurred!
+            } else {
+                // File deleted successfully
+            }
+        })
+        
+    }
+    
     
     private func loadThumbnail (entry:Entry) {
 
