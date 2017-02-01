@@ -31,6 +31,7 @@ class EntryViewController: UIViewController, UINavigationControllerDelegate, UIT
 
     var entry: Entry?
     var uuid: String?
+    var goalsFromPrevDay: String?
     
     let minTextViewHeight: CGFloat = 32
     let maxTextViewHeight: CGFloat = 192
@@ -46,7 +47,10 @@ class EntryViewController: UIViewController, UINavigationControllerDelegate, UIT
             let achievedToday = achievedTodayLabel.text ?? ""
             let reflectToday = reflectTodayLabel.text ?? ""
             let planTomorrow = planTomorrowLabel.text ?? ""
-            let date = datePicker.date
+            let formatter = DateFormatter()
+            formatter.dateStyle = .medium
+            
+            let date = formatter.string(from: datePicker.date)
             let image = photoImageView.image
             let thumbnail = resizeImage(image: image!, newWidth: 80)
 
@@ -82,6 +86,8 @@ class EntryViewController: UIViewController, UINavigationControllerDelegate, UIT
     
     
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -99,7 +105,11 @@ class EntryViewController: UIViewController, UINavigationControllerDelegate, UIT
             achievedTodayLabel.text = entry.achievedToday
             reflectTodayLabel.text = entry.reflectToday
             planTomorrowLabel.text = entry.planTomorrow
-            datePicker.date = entry.date
+            
+            let formatter = DateFormatter()
+            formatter.dateStyle = .medium
+            datePicker.date = formatter.date(from: entry.date)!
+            
             if entry.image != nil {
                 photoImageView.image = entry.image
             } else {
@@ -109,6 +119,9 @@ class EntryViewController: UIViewController, UINavigationControllerDelegate, UIT
         } else {
             datePicker.date = Date()
             uuid = UUID().uuidString
+            if goalsFromPrevDay != nil {
+                planTodayLabel.text = goalsFromPrevDay
+            }
         }
         refreshTextViewHeight(textView: feelingTodayLabel, textViewHeightContraint: feelingTodayTextViewHeight)
         refreshTextViewHeight(textView: planTodayLabel, textViewHeightContraint: planTodayTextViewHeight)

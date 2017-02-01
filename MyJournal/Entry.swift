@@ -17,7 +17,7 @@ class Entry: NSObject, NSCoding {
     var achievedToday: String
     var reflectToday: String
     var planTomorrow: String
-    var date: Date
+    var date: String
     var image: UIImage?
     var thumbnail: UIImage?
     
@@ -40,7 +40,7 @@ class Entry: NSObject, NSCoding {
     
     //MARK:Init
     
-    init(feelingToday: String, planToday: String, affirmToday: String, achievedToday: String, reflectToday: String, planTomorrow: String, date: Date, image: UIImage?, thumbnail: UIImage?, uuid: String) {
+    init(feelingToday: String, planToday: String, affirmToday: String, achievedToday: String, reflectToday: String, planTomorrow: String, date: String, image: UIImage?, thumbnail: UIImage?, uuid: String) {
         self.uuid = uuid
         self.feelingToday = feelingToday
         self.planToday = planToday
@@ -75,7 +75,7 @@ class Entry: NSObject, NSCoding {
         let achievedToday = aDecoder.decodeObject(forKey: PropertyKey.achievedToday) as? String
         let reflectToday = aDecoder.decodeObject(forKey: PropertyKey.reflectToday) as? String
         let planTomorrow = aDecoder.decodeObject(forKey: PropertyKey.planTomorrow) as? String
-        let date = aDecoder.decodeObject(forKey: PropertyKey.date) as? Date
+        let date = aDecoder.decodeObject(forKey: PropertyKey.date) as? String
         let image = aDecoder.decodeObject(forKey: PropertyKey.image) as? UIImage
         let thumbnail = aDecoder.decodeObject(forKey: PropertyKey.thumbnail) as? UIImage
         

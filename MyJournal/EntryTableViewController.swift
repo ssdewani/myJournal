@@ -49,9 +49,7 @@ class EntryTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "EntryTableViewCell", for: indexPath) as! EntryTableViewCell
-        let formatter = DateFormatter()
-        formatter.dateStyle = .medium
-        cell.dateLabel.text =  formatter.string(from: entries[indexPath.row].date)
+        cell.dateLabel.text = entries[indexPath.row].date
     
         let snippet = entries[indexPath.row].feelingToday as String
 //        let index = snippet.index(snippet.startIndex, offsetBy: min(snippet.characters.count,25))
@@ -113,6 +111,20 @@ class EntryTableViewController: UITableViewController {
             let indexPath = tableView.indexPath(for: selectedCell)
             selectedEntryViewController.entry = entries[indexPath!.row]
         }
+        if (segue.identifier == "AddItem") {
+            let navController = segue.destination as! UINavigationController
+            let detailController = navController.topViewController as! EntryViewController
+            let today = Date()
+            let yesterday = Calendar.current.date(byAdding: .day, value: -1, to: today)
+            let formatter = DateFormatter()
+            formatter.dateStyle = .medium
+            let yesterdayString = formatter.string(from: yesterday!)
+            
+            let indexOfYesterday = entries.index(where: {$0.date == yesterdayString})
+            if indexOfYesterday != nil {
+                detailController.goalsFromPrevDay = entries[indexOfYesterday!].planTomorrow
+            }
+        }
         
     }
     
@@ -172,9 +184,8 @@ class EntryTableViewController: UITableViewController {
     private func saveEntryRemote(entry: Entry) {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
-        let dateText =  formatter.string(from: entry.date)
         
-        let entryDict = ["feelingToday": entry.feelingToday, "planToday": entry.planToday, "affirmToday": entry.affirmToday, "achievedToday": entry.achievedToday, "reflectToday": entry.reflectToday, "planTomorrow": entry.planTomorrow, "date": dateText]
+        let entryDict = ["feelingToday": entry.feelingToday, "planToday": entry.planToday, "affirmToday": entry.affirmToday, "achievedToday": entry.achievedToday, "reflectToday": entry.reflectToday, "planTomorrow": entry.planTomorrow, "date": entry.date]
         
         ref.child(uid!).child("entries").child(entry.uuid).setValue(["data": entryDict])
         if (entry.image != nil) {
@@ -206,11 +217,8 @@ class EntryTableViewController: UITableViewController {
                 let achievedToday = dataDict?["achievedToday"] as! String
                 let reflectToday = dataDict?["reflectToday"] as! String
                 let planTomorrow = dataDict?["planTomorrow"] as! String
-                let dateString = dataDict?["date"] as! String
-                let dateFormatter = DateFormatter()
-                dateFormatter.dateStyle = .medium
-                let date = dateFormatter.date(from: dateString)
-                let entry = Entry(feelingToday: feelingToday, planToday: planToday, affirmToday: affirmToday, achievedToday: achievedToday, reflectToday: reflectToday, planTomorrow: planTomorrow, date: date!, image: nil, thumbnail: nil, uuid: uuid)
+                let date = dataDict?["date"] as! String
+                let entry = Entry(feelingToday: feelingToday, planToday: planToday, affirmToday: affirmToday, achievedToday: achievedToday, reflectToday: reflectToday, planTomorrow: planTomorrow, date: date, image: nil, thumbnail: nil, uuid: uuid)
                 self.loadThumbnail(entry: entry)
                 self.entries.append(entry)
                          }
