@@ -104,7 +104,7 @@
                                 <rect key="frame" x="12" y="64" width="351" height="559"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="WDa-Ao-KnN">
-                                        <rect key="frame" x="0.0" y="0.0" width="351" height="857.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="351" height="884.5"/>
                                         <subviews>
                                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="C6t-9R-qMv">
                                                 <rect key="frame" x="0.0" y="0.0" width="351" height="60"/>
@@ -121,11 +121,8 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ga9-aP-kkL">
-                                                <rect key="frame" x="0.0" y="96.5" width="351" height="32"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="32" id="g75-dC-cE7"/>
-                                                </constraints>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ga9-aP-kkL">
+                                                <rect key="frame" x="0.0" y="96.5" width="351" height="36.5"/>
                                                 <attributedString key="attributedText">
                                                     <fragment content="&lt;Enter Text&gt;">
                                                         <attributes>
@@ -137,16 +134,13 @@
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What would make today great" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q8U-ZA-HWe">
-                                                <rect key="frame" x="0.0" y="136.5" width="351" height="20.5"/>
+                                                <rect key="frame" x="0.0" y="141" width="351" height="20.5"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cBg-hx-ZTn">
-                                                <rect key="frame" x="0.0" y="165" width="351" height="32"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="32" id="JfL-ey-3yP"/>
-                                                </constraints>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cBg-hx-ZTn">
+                                                <rect key="frame" x="0.0" y="169.5" width="351" height="36.5"/>
                                                 <attributedString key="attributedText">
                                                     <fragment content="&lt;Enter Text&gt;">
                                                         <attributes>
@@ -158,7 +152,7 @@
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zmj-3m-kfD">
-                                                <rect key="frame" x="0.0" y="205" width="351" height="20.5"/>
+                                                <rect key="frame" x="0.0" y="214" width="351" height="20.5"/>
                                                 <string key="text">Daily affirmations. I am...
 
 </string>
@@ -166,11 +160,8 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KJz-8X-STM">
-                                                <rect key="frame" x="0.0" y="233.5" width="351" height="32"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="32" id="itN-HG-NaQ"/>
-                                                </constraints>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KJz-8X-STM">
+                                                <rect key="frame" x="0.0" y="242.5" width="351" height="36.5"/>
                                                 <attributedString key="attributedText">
                                                     <fragment content="&lt;Enter Text&gt;">
                                                         <attributes>
@@ -182,16 +173,13 @@
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amazing things that happened today" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oqA-Qg-kB6">
-                                                <rect key="frame" x="0.0" y="273.5" width="351" height="20.5"/>
+                                                <rect key="frame" x="0.0" y="287" width="351" height="20.5"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Lpi-Zm-Sln">
-                                                <rect key="frame" x="0.0" y="302" width="351" height="32"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="32" id="lOO-Ap-jYh"/>
-                                                </constraints>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Lpi-Zm-Sln">
+                                                <rect key="frame" x="0.0" y="315.5" width="351" height="36.5"/>
                                                 <attributedString key="attributedText">
                                                     <fragment content="&lt;Enter Text&gt;">
                                                         <attributes>
@@ -203,16 +191,13 @@
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How could I have made today even better" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H2u-H7-97T">
-                                                <rect key="frame" x="0.0" y="342" width="351" height="20.5"/>
+                                                <rect key="frame" x="0.0" y="360" width="351" height="20.5"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SbC-cn-Zgc">
-                                                <rect key="frame" x="0.0" y="370.5" width="351" height="32"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="32" id="ExG-Ke-bJ7"/>
-                                                </constraints>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SbC-cn-Zgc">
+                                                <rect key="frame" x="0.0" y="388.5" width="351" height="36.5"/>
                                                 <attributedString key="attributedText">
                                                     <fragment content="&lt;Enter Text&gt;">
                                                         <attributes>
@@ -224,16 +209,13 @@
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Tomorrow List" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pJp-GG-gSZ">
-                                                <rect key="frame" x="0.0" y="410.5" width="351" height="20.5"/>
+                                                <rect key="frame" x="0.0" y="433" width="351" height="20.5"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ao8-YD-IbG">
-                                                <rect key="frame" x="0.0" y="439" width="351" height="32"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="32" id="pGc-Dx-5Ec"/>
-                                                </constraints>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ao8-YD-IbG">
+                                                <rect key="frame" x="0.0" y="461.5" width="351" height="36.5"/>
                                                 <attributedString key="attributedText">
                                                     <fragment content="&lt;Enter Text&gt;">
                                                         <attributes>
@@ -245,13 +227,13 @@
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Photo of the day" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lyw-z4-FzH">
-                                                <rect key="frame" x="0.0" y="479" width="351" height="20.5"/>
+                                                <rect key="frame" x="0.0" y="506" width="351" height="20.5"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="6T8-gS-wnI">
-                                                <rect key="frame" x="0.0" y="507.5" width="351" height="350"/>
+                                                <rect key="frame" x="0.0" y="534.5" width="351" height="350"/>
                                                 <gestureRecognizers/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="700" id="1MJ-gy-RUv"/>
@@ -296,19 +278,13 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="achievedTodayLabel" destination="Lpi-Zm-Sln" id="yAc-uf-dKF"/>
-                        <outlet property="achievedTodayTextViewHeight" destination="lOO-Ap-jYh" id="mcv-x8-kx7"/>
                         <outlet property="affirmTodayLabel" destination="KJz-8X-STM" id="Ndp-m2-5TF"/>
-                        <outlet property="affirmTodayTextViewHeight" destination="itN-HG-NaQ" id="tpE-ln-OWC"/>
                         <outlet property="datePicker" destination="C6t-9R-qMv" id="uPS-2f-NnS"/>
                         <outlet property="feelingTodayLabel" destination="Ga9-aP-kkL" id="YaQ-Bh-AoY"/>
-                        <outlet property="feelingTodayTextViewHeight" destination="g75-dC-cE7" id="7hB-WO-vrs"/>
                         <outlet property="photoImageView" destination="6T8-gS-wnI" id="Z4J-Jq-v6o"/>
                         <outlet property="planTodayLabel" destination="cBg-hx-ZTn" id="mZz-8Y-7X2"/>
-                        <outlet property="planTodayTextViewHeight" destination="JfL-ey-3yP" id="MLS-hr-Hht"/>
                         <outlet property="planTomorrowLabel" destination="Ao8-YD-IbG" id="2kb-Ve-5Vh"/>
-                        <outlet property="planTomorrowTextViewHeight" destination="pGc-Dx-5Ec" id="9CI-cI-n6M"/>
                         <outlet property="reflectTodayLabel" destination="SbC-cn-Zgc" id="m0G-dp-x0P"/>
-                        <outlet property="reflectTodayTextViewHeight" destination="ExG-Ke-bJ7" id="ENk-L5-V62"/>
                         <outlet property="saveButton" destination="kKv-ed-QdB" id="UXa-Je-uWg"/>
                     </connections>
                 </viewController>

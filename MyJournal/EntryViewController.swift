@@ -21,14 +21,7 @@ class EntryViewController: UIViewController, UINavigationControllerDelegate, UIT
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var photoImageView: UIImageView!
     
-  //  @IBOutlet weak var feelingTodayTextViewHeight: NSLayoutConstraint!
-    @IBOutlet weak var feelingTodayTextViewHeight: NSLayoutConstraint!
-    @IBOutlet weak var affirmTodayTextViewHeight: NSLayoutConstraint!
-    @IBOutlet weak var planTodayTextViewHeight: NSLayoutConstraint!
-    @IBOutlet weak var reflectTodayTextViewHeight: NSLayoutConstraint!
-    @IBOutlet weak var planTomorrowTextViewHeight: NSLayoutConstraint!
-    @IBOutlet weak var achievedTodayTextViewHeight: NSLayoutConstraint!
-
+  
     var entry: Entry?
     var uuid: String?
     var goalsFromPrevDay: String?
@@ -123,23 +116,10 @@ class EntryViewController: UIViewController, UINavigationControllerDelegate, UIT
                 planTodayLabel.text = goalsFromPrevDay
             }
         }
-        refreshTextViewHeight(textView: feelingTodayLabel, textViewHeightContraint: feelingTodayTextViewHeight)
-        refreshTextViewHeight(textView: planTodayLabel, textViewHeightContraint: planTodayTextViewHeight)
-        refreshTextViewHeight(textView: affirmTodayLabel, textViewHeightContraint: affirmTodayTextViewHeight)
-        refreshTextViewHeight(textView: achievedTodayLabel, textViewHeightContraint: achievedTodayTextViewHeight)
-        refreshTextViewHeight(textView: planTomorrowLabel, textViewHeightContraint: planTomorrowTextViewHeight)
-        refreshTextViewHeight(textView: reflectTodayLabel, textViewHeightContraint: reflectTodayTextViewHeight)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        refreshTextViewHeight(textView: feelingTodayLabel, textViewHeightContraint: feelingTodayTextViewHeight)
-        refreshTextViewHeight(textView: planTodayLabel, textViewHeightContraint: planTodayTextViewHeight)
-        refreshTextViewHeight(textView: affirmTodayLabel, textViewHeightContraint: affirmTodayTextViewHeight)
-        refreshTextViewHeight(textView: achievedTodayLabel, textViewHeightContraint: achievedTodayTextViewHeight)
-        refreshTextViewHeight(textView: planTomorrowLabel, textViewHeightContraint: planTomorrowTextViewHeight)
-        refreshTextViewHeight(textView: reflectTodayLabel, textViewHeightContraint: reflectTodayTextViewHeight)
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -149,25 +129,7 @@ class EntryViewController: UIViewController, UINavigationControllerDelegate, UIT
     
     //MARK: UITextView Delegate
    
-    func textViewDidChange(_ textView: UITextView) {
-        switch textView {
-        case feelingTodayLabel:
-            refreshTextViewHeight(textView: feelingTodayLabel, textViewHeightContraint: feelingTodayTextViewHeight)
-        case planTodayLabel:
-            refreshTextViewHeight(textView: planTodayLabel, textViewHeightContraint: planTodayTextViewHeight)
-        case affirmTodayLabel:
-            refreshTextViewHeight(textView: affirmTodayLabel, textViewHeightContraint: affirmTodayTextViewHeight)
-        case achievedTodayLabel:
-            refreshTextViewHeight(textView: achievedTodayLabel, textViewHeightContraint: achievedTodayTextViewHeight)
-        case reflectTodayLabel:
-            refreshTextViewHeight(textView: reflectTodayLabel, textViewHeightContraint: reflectTodayTextViewHeight)
-        case planTomorrowLabel:
-            refreshTextViewHeight(textView: planTomorrowLabel, textViewHeightContraint: planTomorrowTextViewHeight)
-        default:
-            print ("damn")
-        }
-     
-    }
+
     
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.text == "<Enter Text>" {
@@ -187,12 +149,10 @@ class EntryViewController: UIViewController, UINavigationControllerDelegate, UIT
             if range.location == textView.text.characters.count {
                 let updatedText: String = textView.text! + "\n \u{2022} "
                 textView.text = updatedText
-                textViewDidChange(textView)
             }
             else {
                 let textRange: UITextRange = textView.selectedTextRange!
                 textView.replace(textRange, withText: "\n \u{2022} ")
-                textViewDidChange(textView)
 
                 let cursor: NSRange = NSMakeRange(range.location + "\n \u{2022} ".characters.count, 0)
                 textView.selectedRange = cursor
@@ -259,23 +219,7 @@ class EntryViewController: UIViewController, UINavigationControllerDelegate, UIT
     
     //MARK: Private methods
     
-    private func refreshTextViewHeight(textView: UITextView, textViewHeightContraint:NSLayoutConstraint) {
-        var height = ceil(textView.contentSize.height)
-        if (height < minTextViewHeight + 5) { // min cap, + 5 to avoid tiny height difference at min height
-            height = minTextViewHeight
-        }
-        if (height > maxTextViewHeight) { // max cap
-            height = maxTextViewHeight
-        }
-        
-        if height != textViewHeightContraint.constant - 10 { // set when height changed
-            textViewHeightContraint.constant = height + 10 // change the value of NSLayoutConstraint
-            textView.setContentOffset(CGPoint.zero, animated: false) // scroll to top to avoid "wrong contentOffset" artefact when line count changes
-        }
 
-//        let sizeThatShouldFitTheContent: CGSize = textView.sizeThatFits(textView.frame.size)
-//        textViewHeightContraint.constant = sizeThatShouldFitTheContent.height
-    }
     
     private func resizeImage(image: UIImage, newWidth: CGFloat) -> UIImage? {
         
