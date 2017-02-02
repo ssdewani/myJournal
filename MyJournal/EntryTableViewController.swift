@@ -20,6 +20,7 @@ class EntryTableViewController: UITableViewController {
     
     //MARK: Properties
     var entries = [Entry]()
+    var deleteEntryIndexPath: IndexPath? = nil
     
     
     override func viewDidLoad() {
@@ -80,11 +81,8 @@ class EntryTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
-            let entry = entries[indexPath.row]
-            deleteEntryRemote(entry: entry)
-            deleteImage(entry: entry)
-            entries.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
+            deleteEntryIndexPath = indexPath
+            confirmDelete()
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
@@ -297,6 +295,39 @@ class EntryTableViewController: UITableViewController {
                 self.tableView.reloadRows(at: [newIndexPath], with: .automatic)
             }
         }
+    }
+    
+    private func confirmDelete() {
+        let alert = UIAlertController(title: "Delete Entry", message: "Are you sure you want to permanently delete this entry?", preferredStyle: .actionSheet)
+        
+        let DeleteAction = UIAlertAction(title: "Delete", style: .destructive, handler: handleDeleteEntry)
+        let CancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: cancelDeleteEntry)
+        
+        alert.addAction(DeleteAction)
+        alert.addAction(CancelAction)
+        
+        // Support display in iPad
+        alert.popoverPresentationController?.sourceView = self.view
+        alert.popoverPresentationController?.sourceRect = CGRect(x:self.view.bounds.size.width / 2.0, y:self.view.bounds.size.height / 2.0, width:1.0, height:1.0)
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func handleDeleteEntry (alertAction: UIAlertAction!) {
+        if let indexPath = deleteEntryIndexPath {
+            let entry = entries[indexPath.row]
+            tableView.beginUpdates()
+            deleteEntryRemote(entry: entry)
+            deleteImage(entry: entry)
+            entries.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            deleteEntryIndexPath = nil
+            tableView.endUpdates()
+        }
+    }
+    
+    func cancelDeleteEntry(alertAction: UIAlertAction!) {
+        deleteEntryIndexPath = nil
     }
 
 }
