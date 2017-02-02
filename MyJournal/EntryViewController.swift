@@ -48,7 +48,7 @@ class EntryViewController: UIViewController, UINavigationControllerDelegate, UIT
             let reflectToday = reflectTodayLabel.text ?? ""
             let planTomorrow = planTomorrowLabel.text ?? ""
             let formatter = DateFormatter()
-            formatter.dateStyle = .medium
+            formatter.dateFormat = "yyyy-MM-dd"
             
             let date = formatter.string(from: datePicker.date)
             let image = photoImageView.image
@@ -107,7 +107,7 @@ class EntryViewController: UIViewController, UINavigationControllerDelegate, UIT
             planTomorrowLabel.text = entry.planTomorrow
             
             let formatter = DateFormatter()
-            formatter.dateStyle = .medium
+            formatter.dateFormat = "yyyy-MM-dd"
             datePicker.date = formatter.date(from: entry.date)!
             
             if entry.image != nil {

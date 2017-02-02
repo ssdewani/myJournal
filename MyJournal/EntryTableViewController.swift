@@ -49,7 +49,13 @@ class EntryTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "EntryTableViewCell", for: indexPath) as! EntryTableViewCell
-        cell.dateLabel.text = entries[indexPath.row].date
+        let originalFormatter = DateFormatter()
+        originalFormatter.dateFormat = "yyyy-MM-dd"
+        let date = originalFormatter.date(from: entries[indexPath.row].date)
+        let newFormatter = DateFormatter()
+        newFormatter.dateStyle = .medium
+        
+        cell.dateLabel.text = newFormatter.string(from: date!)
     
         let snippet = entries[indexPath.row].feelingToday as String
 //        let index = snippet.index(snippet.startIndex, offsetBy: min(snippet.characters.count,25))
@@ -117,7 +123,7 @@ class EntryTableViewController: UITableViewController {
             let today = Date()
             let yesterday = Calendar.current.date(byAdding: .day, value: -1, to: today)
             let formatter = DateFormatter()
-            formatter.dateStyle = .medium
+            formatter.dateFormat = "yyyy-MM-dd"
             let yesterdayString = formatter.string(from: yesterday!)
             
             let indexOfYesterday = entries.index(where: {$0.date == yesterdayString})
@@ -182,8 +188,6 @@ class EntryTableViewController: UITableViewController {
     
     
     private func saveEntryRemote(entry: Entry) {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .medium
         
         let entryDict = ["feelingToday": entry.feelingToday, "planToday": entry.planToday, "affirmToday": entry.affirmToday, "achievedToday": entry.achievedToday, "reflectToday": entry.reflectToday, "planTomorrow": entry.planTomorrow, "date": entry.date]
         
