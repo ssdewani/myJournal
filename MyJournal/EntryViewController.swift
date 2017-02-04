@@ -144,7 +144,11 @@ class EntryViewController: UIViewController, UINavigationControllerDelegate, UIT
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         
         
-        if (text == "\n") && (textView != affirmTodayLabel)  {
+        if (textView.text.characters.count + text.characters.count - range.length > 500) {
+            
+            return false
+            
+        } else if (text == "\n") && (textView != affirmTodayLabel)  {
             
             if range.location == textView.text.characters.count {
                 let updatedText: String = textView.text! + "\n \u{2022} "
