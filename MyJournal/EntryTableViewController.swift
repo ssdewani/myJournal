@@ -58,9 +58,12 @@ class EntryTableViewController: UITableViewController {
         
         cell.dateLabel.text = newFormatter.string(from: date!)
     
-        let snippet = entries[indexPath.row].feelingToday as String
+        let snippetTemp1 = entries[indexPath.row].feelingToday + "\n" + entries[indexPath.row].planToday + "\n" + entries[indexPath.row].affirmToday as String
 //        let index = snippet.index(snippet.startIndex, offsetBy: min(snippet.characters.count,25))
 //        cell.snippetLabel.text = snippet.substring(to: index)
+        
+        let snippetTemp2 = snippetTemp1.replacingOccurrences(of: "<Enter Text>\n", with: "")
+        let snippet = snippetTemp2.replacingOccurrences(of: "\n\n", with: "\n")
         cell.snippetLabel.text  = snippet
         cell.photoImageView.image = entries[indexPath.row].thumbnail
     
