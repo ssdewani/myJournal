@@ -42,10 +42,14 @@ class EntryViewController: UIViewController, UINavigationControllerDelegate, UIT
             let planTomorrow = planTomorrowLabel.text ?? ""
             let formatter = DateFormatter()
             formatter.dateFormat = "yyyy-MM-dd"
+            var image: UIImage?
+            var thumbnail: UIImage?
             
             let date = formatter.string(from: datePicker.date)
-            let image = photoImageView.image
-            let thumbnail = resizeImage(image: image!, newWidth: 80)
+            if photoImageView.image != #imageLiteral(resourceName: "defaultPhoto") {
+                image = photoImageView.image
+                thumbnail = resizeImage(image: image!, newWidth: 80)
+            }
 
             entry = Entry(feelingToday: feelingToday, planToday: planToday, affirmToday: affirmToday, achievedToday: achievedToday, reflectToday: reflectToday, planTomorrow: planTomorrow, date: date, image: image, thumbnail: thumbnail, uuid: uuid!)
         }
